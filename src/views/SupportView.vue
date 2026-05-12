@@ -61,7 +61,7 @@ async function submitForm() {
 }
 
 const faqs = ref([
-  { q: 'How do I delete my account?', a: 'You can delete your account directly from the app: go to Settings → Account → Delete Account. You can also visit rpgmaster.ai/account-deletion or email privacy@rpgmaster.ai.', open: false },
+  { q: 'How do I delete my account?', a: 'You can delete your account directly from the app: go to Settings → Account → Delete Account.', open: false },
   { q: 'How do I restore a purchase?', a: 'Open the app, go to the token shop, and tap "Restore Purchases". If the issue persists, contact us using the form above with your purchase receipt.', open: false },
   { q: 'The app crashed. What should I do?', a: 'Make sure you have the latest version from the App Store or Google Play. If the crash continues, send us a bug report with your device model and what you were doing when it happened.', open: false },
   { q: 'How do I contact support?', a: 'Use the form above, or email us directly at help@rpgmaster.ai. You can also reach our community on Discord for quick help from other players.', open: false }
