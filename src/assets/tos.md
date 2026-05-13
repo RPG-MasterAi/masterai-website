@@ -14,7 +14,7 @@ If you do not agree with these Terms, do not use the Services.
 
 MasterAi is a service that uses **generative artificial intelligence** to produce game master narratives, character interactions, and immersive role-playing content. By using the Services, you acknowledge and accept the following:
 
-- The Services rely on AI to generate text and (where applicable) audio responses based on your prompts and game state.
+- The Services rely on AI to generate text responses based on your prompts and game state
 - AI-generated content is **provided for entertainment purposes only**. It may occasionally contain inaccuracies, biases, factual errors, or unexpected outputs.
 - AI-generated content **does not constitute professional advice** of any kind (legal, medical, financial, psychological, educational, or otherwise). You should not rely on it for real-world decisions.
 - You should **not enter sensitive personal data, financial information, health information, credentials, or other confidential information** into AI prompts.
