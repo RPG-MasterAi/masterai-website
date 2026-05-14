@@ -183,7 +183,7 @@ Full details are available in our [Privacy Policy](https://rpgmaster.ai/privacy)
 
 (d) **Assignment.** You may not assign or delegate any rights or obligations under these Terms. We may assign these Terms in connection with a merger, acquisition, or corporate reorganization.
 
-(e) **Modifications.** We may amend these Terms from time to time. Material changes will be notified through the application or via the email associated with your account, no fewer than 30 days before they take effect (except for changes required by law, which may be effective immediately). Your continued use of the Services after any change means you accept the change. You may terminate your account if you do not accept the changes.
+(e) **Modifications.** We may amend these Terms from time to time. When we do, we will post the updated Terms in the application and on our website with the new effective date. For material changes, we will provide reasonable advance notice through the application or via the email associated with your account before the changes take effect; the notice period will be proportionate to the nature of the changes. Changes required by law or aimed at improving security or preventing abuse may take effect with shorter notice or immediately where necessary. Your continued use of the Services after the effective date constitutes acceptance of the updated Terms. If you do not accept the changes, you may terminate your account at any time.
 
 (f) **Notices.** Notices to MasterAi may be sent to **support@rpgmaster.ai** or to the registered office address indicated in Section 10(c). Notices to you may be sent via the email address associated with your account or through in-app notification.
 
