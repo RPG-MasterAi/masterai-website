@@ -2,7 +2,7 @@
 
 **MasterAi S.R.L.S.**, located at Via degli Aceri 77, 00172 Roma, with Tax Identification Number and VAT Number 17291571002, acting as the Data Controller for personal data (hereinafter also referred to as "Data Controller"), in compliance with EU Regulation 2016/679 of April 27, 2016 (General Data Protection Regulation, hereinafter "GDPR") and with Italian Legislative Decree No. 196/2003 (Privacy Code) as amended by Legislative Decree No. 101/2018, hereby provides this privacy notice pursuant to Articles 13 and 14 of the GDPR, regarding the processing of your personal data for the purposes and in the manner set forth below.
 
-**Last updated: May 2026**
+**Last updated: August 2026**
 
 The term "processing of personal data" refers to any operation or set of operations, carried out with or without the aid of automated processes and applied to personal data or sets of personal data, such as collection, recording, organization, structuring, storage, adaptation or alteration, retrieval, consultation, use, disclosure by transmission, dissemination or otherwise making available, alignment or combination, restriction, erasure, or destruction.
 
@@ -12,12 +12,13 @@ We inform you that such data will be processed manually and/or with the support 
 
 MasterAi is a service that uses generative artificial intelligence to produce game master narratives, character interactions, and immersive role-playing content. When you interact with MasterAi:
 
-- Your text prompts and interactions are processed by a third-party generative AI provider based in the United States.
+- Your text prompts and interactions are processed by third-party generative AI providers, primarily based in the United States.
+- The Services may also generate illustrations of scenes and characters. Prompts for these illustrations are derived automatically from your gameplay by the AI and are transmitted to third-party image generation providers.
 - The AI may occasionally produce inaccurate, biased, or unexpected content.
 - You should not enter sensitive personal data, financial information, health information, or other confidential information into the AI prompts.
 - AI-generated content is provided for entertainment purposes only and does not constitute professional advice of any kind.
 
-Transfers of data to the AI provider in the United States are based on Standard Contractual Clauses approved by the European Commission under Decision 2021/914, in compliance with Article 46 of EU Regulation 2016/679.
+Transfers of data to AI providers located outside the European Economic Area are based on Standard Contractual Clauses approved by the European Commission under Decision 2021/914, in compliance with Article 46 of EU Regulation 2016/679.
 
 ## 1- Purposes of Personal Data Processing and Legal Basis
 
@@ -54,8 +55,9 @@ Pursuant to **Article 13, paragraph 1, letter (e) of the GDPR**, the following c
 - Credit institutions;
 - Commercial information companies;
 - Professionals and consultants of the Data Controller;
-- Third-party generative AI providers based in the United States, who process user prompts to generate game content;
-- Cloud infrastructure providers (Amazon Web Services Inc., Hetzner Online GmbH) for data storage and service operation.
+- Third-party generative AI providers, who process user prompts to generate game content;
+- Third-party image generation providers, who process automatically derived prompts to generate in-game illustrations;
+- Cloud infrastructure and content delivery providers for data storage, service operation, and security.
 
 Furthermore, for the pursuit of the purposes indicated in point 1, the data may be communicated to any other third party when the communication is mandatory by law or contract.
 
@@ -79,23 +81,25 @@ Pursuant to **Article 13, paragraph 1, letter (f) of the GDPR**, the user is inf
 
 ### 3.1 Storage of player chat data and application data
 
-User chat data, account information, and game state are stored on cloud infrastructure provided by:
+User chat data, account information, game state, and AI-generated in-game illustrations are stored on cloud infrastructure provided by:
 
 - **Amazon Web Services Inc. (AWS)** — region: Europe (Frankfurt), eu-central-1, within EU territory in compliance with Article 44 GDPR. Privacy information available at: https://aws.amazon.com/privacy/
 
-- **Hetzner Online GmbH** — Industriestr. 25, 91710 Gunzenhausen, Germany (within EU territory, in compliance with Article 44 GDPR). Privacy information available at: https://www.hetzner.com/legal/privacy-policy/
+### 3.2 Transfer to AI and image generation providers
 
-### 3.2 Transfer to AI provider for content generation
+When you interact with MasterAi's game master features, your text prompts are transmitted in real time to third-party generative AI providers. The provider processes the prompt and returns a generated response, which is then displayed within the application.
 
-When you interact with MasterAi's game master features, your text prompts are transmitted in real time to a third-party generative AI provider based in the United States. The AI provider processes the prompt and returns a generated response, which is then displayed within the application. Transfers to the AI provider in the United States are based on Standard Contractual Clauses approved by the European Commission under Decision 2021/914, in compliance with Article 46 of EU Regulation 2016/679. The AI provider is contractually bound to confidentiality and data protection standards equivalent to those required by the GDPR.
+The Services may also generate illustrations of scenes and characters. The prompts used for these illustrations are derived automatically by the AI from your gameplay and are transmitted to third-party image generation providers; the resulting images are stored on our cloud infrastructure as described in Section 3.1.
+
+Where these providers are located outside the European Economic Area, transfers are based on Standard Contractual Clauses approved by the European Commission under Decision 2021/914, in compliance with Article 46 of EU Regulation 2016/679. These providers are contractually bound to confidentiality and data protection standards equivalent to those required by the GDPR.
 
 ### 3.3 Email communications
 
 Email communications are processed using Google Workspace (Gmail). Privacy information available at: https://policies.google.com/privacy
 
-### 3.4 Content delivery and security
+### 3.4 Content delivery, security, and infrastructure
 
-Content delivery, security, and traffic optimization services are provided by Cloudflare Inc., based in the United States. Transfers to Cloudflare are based on Standard Contractual Clauses. Privacy information available at: https://www.cloudflare.com/privacypolicy/
+Content delivery, security, and traffic optimization services are provided by third-party infrastructure providers. Where such providers are located outside the European Economic Area, transfers are based on Standard Contractual Clauses approved by the European Commission.
 
 ## a- Existence of Automated Decision-Making Process, Including Profiling
 
@@ -128,13 +132,15 @@ The identifying details of the principal Data Processors are as follows:
 
 - **For cloud infrastructure (data storage and processing):**
   - Amazon Web Services Inc. (AWS), Europe (Frankfurt) region — privacy: https://aws.amazon.com/privacy/
-  - Hetzner Online GmbH, Industriestr. 25, 91710 Gunzenhausen, Germany
 
 - **For generative AI content generation:**
-  - Third-party generative AI provider based in the United States. Transfers based on Standard Contractual Clauses (Decision 2021/914 of the European Commission).
+  - Third-party generative AI providers. Where located outside the European Economic Area, transfers are based on Standard Contractual Clauses (Decision 2021/914 of the European Commission).
+
+- **For image generation:**
+  - Third-party image generation providers. Where located outside the European Economic Area, transfers are based on Standard Contractual Clauses (Decision 2021/914 of the European Commission).
 
 - **For content delivery and security:**
-  - Cloudflare Inc., based in the United States. Transfers based on Standard Contractual Clauses.
+  - Third-party infrastructure providers. Where located outside the European Economic Area, transfers are based on Standard Contractual Clauses.
 
 - **For advertising:**
   - Google Ireland Limited (AdMob — also acts as mediation platform)
@@ -321,6 +327,11 @@ Several state laws (particularly California, Connecticut, and Maryland under the
 - Text prompts entered into the AI game master interface;
 - Payment information (processed by Google Play, not stored by MasterAi).
 
+### C. Data Generated by the Services
+
+- AI-generated narrative content produced in response to your prompts;
+- In-game illustrations of scenes and characters. The prompts used to generate these illustrations are derived automatically by the AI from your gameplay and are not written by you.
+
 ### Customer Support
 
 If you contact us through our support system at **privacy@rpgmaster.ai** or **help@rpgmaster.ai**, we keep your email and a copy of that correspondence for the duration necessary to respond and resolve your inquiry.
@@ -329,7 +340,7 @@ If you contact us through our support system at **privacy@rpgmaster.ai** or **he
 
 We will not actively obtain or record sensitive information (racial or ethnic origin, political opinions, religious beliefs, health information, etc.).
 
-**Important note on AI prompts**: Users are advised NOT to enter sensitive personal information into AI prompts. While we instruct our AI provider to discard prompts after processing, MasterAi cannot guarantee the absence of incidental processing of sensitive information voluntarily provided by the user. Users assume responsibility for the content of prompts they submit.
+**Important note on AI prompts**: Users are advised NOT to enter sensitive personal information into AI prompts. Prompts pass through an AI gateway whose logs are retained for a maximum of 24 hours. Our AI providers process prompts under contractual terms that limit retention to what is necessary for service provision and abuse prevention. MasterAi cannot guarantee the absence of incidental processing of sensitive information voluntarily provided by the user. Users assume responsibility for the content of prompts they submit.
 
 ## 12- Account Deletion
 
@@ -337,7 +348,7 @@ You can delete your account at any time directly from within the MasterAi applic
 
 When you delete your account:
 
-- Your email, game state, character data, chat history, and personally identifiable information are permanently and irreversibly removed from our systems and from active database storage.
+- Your email, game state, character data, chat history, generated in-game illustrations, and personally identifiable information are permanently and irreversibly removed from our systems and from active database storage.
 - Backup copies are overwritten according to our standard backup rotation policy (typically within 30 days).
 - A pseudonymized cryptographic hash derived from your email address is retained for up to 12 months for fraud prevention purposes only (see Section 13 for details). This pseudonymized data does not allow MasterAi to identify you, contact you, or reconstruct your email; it serves exclusively to detect repeated welcome bonus claims by the same email address.
 
@@ -384,4 +395,4 @@ You also have the right to object to this processing under Article 21 GDPR. Such
 
 **Contact for any privacy-related inquiry: privacy@rpgmaster.ai**
 
-**Last updated: May 2026**
+**Last updated: August 2026**
