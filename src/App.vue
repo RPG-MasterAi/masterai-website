@@ -1,10 +1,14 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+import { RouterLink, RouterView, useRoute } from 'vue-router'
 import Home from './components/Home.vue'
+
+// The homepage has its own full-screen layout and navbar: the classic header
+// stays on every other page (privacy, tos, account-deletion, support, about).
+const route = useRoute()
 </script>
 
 <template>
-  <header>
+  <header v-if="route.path !== '/'">
     <img alt="Vue logo" class="logo" src="@/assets/logo.png" width="125" height="125" />
 
     <div class="wrapper">
