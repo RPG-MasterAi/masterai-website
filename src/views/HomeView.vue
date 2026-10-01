@@ -271,6 +271,10 @@ onBeforeUnmount(() => {
 <style>
 body.home-full {
   display: block;
+  /* main.css also sets `place-items: center` on body (>= 1024px). Recent Chrome
+     applies justify-items to block layout too, which shrinks #app to its
+     content width (1100px) and leaves black bands on both sides. */
+  place-items: normal;
   background: #0a0a0f;
 }
 body.home-full #app {
