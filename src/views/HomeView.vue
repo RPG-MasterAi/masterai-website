@@ -1,29 +1,29 @@
 <script setup lang="ts">
 import { onBeforeUnmount, onMounted, reactive, ref } from 'vue'
 import { RouterLink } from 'vue-router'
+import SiteFooter from '@/components/site/SiteFooter.vue'
+import { ADVENTURES } from '@/data/adventures'
+import { CLASSES, PLAYABLE_CLASSES, RACES } from '@/data/classes'
+import { DISCORD, SITE_NAV, STORE } from '@/data/links'
 
 // ═══════════════════════════════════════════
 // rpgmaster.ai homepage — BG3-inspired design
 // Ported from the React prototype (rpgmaster-homepage.jsx) on 2026-10-01.
-// Sections hidden on Marco's request (2026-09-30) are not ported: How It Works,
-// Classes & Races. They come back with real artwork and a proper guide.
+// How It Works stays hidden (Marco, 2026-09-30) until there is a proper guide.
+// Classes & Races came back on 2026-10-02 with the app's own artwork, as a
+// teaser of the /classes page; the adventures teaser leads to /adventures.
+// Store and Discord links live in src/data/links.ts.
 // ═══════════════════════════════════════════
 
-// Store links — single source of truth. Verified 2026-09-30.
-// The App Store URL has no country code on purpose: Apple redirects each
-// visitor to their own country store.
-const STORE = {
-  android: 'https://play.google.com/store/apps/details?id=ai.rpgmaster.masterai',
-  ios: 'https://apps.apple.com/app/id6744970225'
-}
-
-const DISCORD = 'https://discord.gg/bPrEUFtjnp'
+// The first three adventures on the homepage; the rest is one click away.
+const ADVENTURE_TEASER = ADVENTURES.slice(0, 3)
 
 const STATS = [
   { value: '100K+', label: 'Downloads' },
   { value: '1,600+', label: 'Reviews' },
-  { value: '12', label: 'Classes' },
-  { value: '8', label: 'Races' },
+  // What the public app offers today: the Warlock is still switched off.
+  { value: String(PLAYABLE_CLASSES), label: 'Classes' },
+  { value: String(RACES.length), label: 'Races' },
   { value: '20', label: 'Max Level' }
 ]
 
@@ -46,7 +46,7 @@ const FEATURES = [
   {
     icon: '📈',
     title: 'Level 1 to 20',
-    desc: 'Full progression system across 12 classes. Unlock abilities, grow stronger, shape your legend.'
+    desc: `Full progression system across ${PLAYABLE_CLASSES} classes. Unlock abilities, grow stronger, shape your legend.`
   }
 ]
 
@@ -105,6 +105,11 @@ onBeforeUnmount(() => {
         <span class="brand-master">MASTER</span>
         <span class="brand-ai">AI</span>
       </div>
+      <div class="nav-links">
+        <RouterLink v-for="item in SITE_NAV" :key="item.to" :to="item.to" class="nav-link">
+          {{ item.label }}
+        </RouterLink>
+      </div>
       <a href="#download" class="cta-btn cta-small">▶ Download</a>
     </nav>
 
@@ -138,7 +143,7 @@ onBeforeUnmount(() => {
 
     <!-- ═══ STATS BAR ═══ -->
     <section id="stats" :ref="registerSection" class="stats">
-      <div class="stats-grid" :style="{ gridTemplateColumns: `repeat(${STATS.length}, 1fr)` }">
+      <div class="stats-grid" :style="{ gridTemplateColumns: `repeat(${STATS.length}, minmax(0, 1fr))` }">
         <div
           v-for="(stat, i) in STATS"
           :key="stat.label"
@@ -189,6 +194,51 @@ onBeforeUnmount(() => {
       </div>
     </section>
 
+    <!-- ═══ ADVENTURES ═══ -->
+    <section id="adventures" :ref="registerSection" class="adventures">
+      <div class="section-head fade-up" :class="{ visible: visible.adventures }">
+        <p class="eyebrow">{{ ADVENTURES.length }} Worlds to Explore</p>
+        <h2 class="section-title">Adventures</h2>
+      </div>
+      <div class="adv-grid">
+        <RouterLink
+          v-for="(a, i) in ADVENTURE_TEASER"
+          :key="a.slug"
+          :to="`/adventures/${a.slug}`"
+          class="adv-card fade-up"
+          :class="[`stagger-${i + 1}`, { visible: visible.adventures }]"
+        >
+          <img :src="a.card" :alt="a.heroAlt" loading="lazy" width="720" height="405" />
+          <div class="adv-body">
+            <h3 class="adv-title">
+              <template v-for="(w, j) in a.title.split(' ')" :key="j"><span class="nw">{{ w }}</span>{{ ' ' }}</template>
+            </h3>
+            <p class="adv-tagline">{{ a.tagline }}</p>
+          </div>
+        </RouterLink>
+      </div>
+      <div class="more-row">
+        <RouterLink to="/adventures" class="cta-btn-outline">See all {{ ADVENTURES.length }} adventures</RouterLink>
+      </div>
+    </section>
+
+    <!-- ═══ CLASSES & RACES ═══ -->
+    <section id="classes" :ref="registerSection" class="classes">
+      <div class="section-head fade-up" :class="{ visible: visible.classes }">
+        <p class="eyebrow">{{ PLAYABLE_CLASSES }} Classes · {{ RACES.length }} Races</p>
+        <h2 class="section-title">Choose Your Hero</h2>
+      </div>
+      <div class="class-strip fade-up" :class="{ visible: visible.classes }">
+        <RouterLink v-for="c in CLASSES" :key="c.id" to="/classes" class="class-tile" :title="c.name">
+          <img :src="c.image" :alt="c.name" loading="lazy" width="512" height="512" />
+          <span class="class-tile-name">{{ c.name }}</span>
+        </RouterLink>
+      </div>
+      <div class="more-row">
+        <RouterLink to="/classes" class="cta-btn-outline">Meet the classes and races</RouterLink>
+      </div>
+    </section>
+
     <!-- ═══ REVIEWS ═══ -->
     <section id="reviews" :ref="registerSection" class="reviews">
       <div class="section-head fade-up" :class="{ visible: visible.reviews }" style="margin-bottom: 40px">
@@ -234,35 +284,7 @@ onBeforeUnmount(() => {
     </section>
 
     <!-- ═══ FOOTER ═══ -->
-    <footer class="footer">
-      <div class="footer-grid">
-        <div>
-          <div class="footer-brand">MASTER<span class="red">AI</span></div>
-          <p class="footer-tag">The ultimate AI-powered RPG.<br />Your imagination is the only limit.</p>
-        </div>
-        <div>
-          <h4 class="footer-head">Connect</h4>
-          <div class="footer-col">
-            <a :href="DISCORD" class="footer-link">Discord</a>
-            <a :href="STORE.android" class="footer-link">Google Play</a>
-            <a :href="STORE.ios" class="footer-link">App Store</a>
-            <RouterLink to="/support" class="footer-link">Support</RouterLink>
-            <a href="mailto:Info@rpgmaster.ai" class="footer-link">Contact</a>
-          </div>
-        </div>
-        <div>
-          <h4 class="footer-head">Legal</h4>
-          <div class="footer-col">
-            <RouterLink to="/privacy" class="footer-link">Privacy Policy</RouterLink>
-            <RouterLink to="/tos" class="footer-link">Terms of Service</RouterLink>
-          </div>
-        </div>
-      </div>
-      <div class="gold-divider-wide" />
-      <div class="copyright">
-        <p>© 2026 MasterAI — RPGMaster.ai. All rights reserved.</p>
-      </div>
-    </footer>
+    <SiteFooter />
   </div>
 </template>
 
@@ -506,23 +528,62 @@ body.home-full #app {
 .final-text { font-size: 18px; color: #8a7e6e; max-width: 500px; margin: 0 auto 40px; }
 .discord-row { margin-top: 24px; display: flex; gap: 24px; justify-content: center; }
 
-/* ── footer ── */
-.footer { padding: 60px 20px 40px; border-top: 1px solid rgba(201, 168, 76, 0.1); max-width: 1200px; margin: 0 auto; }
-.footer-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 40px; margin-bottom: 40px;
+/* ── navbar links ── */
+.nav-links { display: flex; gap: 28px; margin-left: auto; margin-right: 28px; }
+.nav-link {
+  font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+  color: #a89070; transition: color 0.3s;
 }
-.footer-brand { font-family: 'Cinzel Decorative', serif; font-size: 20px; font-weight: 900; color: #c9a84c; margin-bottom: 16px; }
-.footer-tag { font-size: 13px; line-height: 1.7; color: #4a4a4a; }
-.footer-head {
-  font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 3px; color: #6b6b6b;
-  text-transform: uppercase; margin-bottom: 16px;
+.home .nav-link:hover { color: #c9a84c; }
+
+/* ── adventures teaser ── */
+.adventures { padding: 80px 20px 60px; max-width: 1200px; margin: 0 auto; }
+.adv-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+.adv-card {
+  display: block; color: inherit; overflow: hidden;
+  background: rgba(20, 20, 30, 0.8); border: 1px solid rgba(201, 168, 76, 0.15);
+  transition: border-color 0.4s, box-shadow 0.4s, opacity 0.8s cubic-bezier(0.22, 1, 0.36, 1), transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
-.footer-col { display: flex; flex-direction: column; gap: 10px; }
-.footer-link { color: #6b6b6b; font-size: 13px; transition: color 0.3s; }
-.home .footer-link:hover { color: #c9a84c; }
-.copyright { text-align: center; padding-top: 24px; }
-.copyright p { font-size: 12px; color: #333; letter-spacing: 1px; }
+.adv-card:hover { border-color: rgba(201, 168, 76, 0.45); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5); }
+.adv-card img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
+.adv-body { padding: 20px 22px 24px; }
+.adv-title { font-family: 'Cinzel', serif; font-size: 18px; font-weight: 700; color: #e8e0d0; margin-bottom: 8px; letter-spacing: 1px; }
+.nw { white-space: nowrap; }
+.adv-tagline { font-size: 15px; line-height: 1.6; color: #8a7e6e; font-style: italic; }
+.more-row { display: flex; justify-content: center; margin-top: 36px; }
+
+/* ── classes teaser ── */
+.classes { padding: 60px 20px 80px; max-width: 1200px; margin: 0 auto; }
+.class-strip { display: grid; grid-template-columns: repeat(6, 1fr); gap: 12px; }
+.class-tile { position: relative; display: block; overflow: hidden; border: 1px solid rgba(201, 168, 76, 0.15); transition: border-color 0.4s; }
+.class-tile:hover { border-color: #c9a84c; }
+.class-tile img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; display: block; transition: transform 0.6s; }
+.class-tile:hover img { transform: scale(1.06); }
+.class-tile::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 55%, rgba(10, 10, 15, 0.9) 100%); }
+.class-tile-name {
+  position: absolute; left: 0; right: 0; bottom: 8px; z-index: 1; text-align: center;
+  font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700; letter-spacing: 1px;
+  text-transform: uppercase; color: #e8e0d0;
+}
+
+@media (max-width: 860px) {
+  .nav-links { display: none; }
+  /* Five stats do not fit side by side on a phone (the last two ended off screen): 3 + 2. */
+  .stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+  .stat-item { padding: 20px 8px; }
+  .stat-item:nth-child(3)::after { display: none; }
+  .class-strip { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 480px) {
+  /* The Download button used to cover the MASTER AI brand on a 390px phone. */
+  .nav-bar { padding: 0 16px; }
+  .brand { gap: 8px; }
+  .brand-master { font-size: 16px; letter-spacing: 1px; }
+  .brand-ai { font-size: 13px; }
+  .cta-small { padding: 9px 14px; letter-spacing: 1px; gap: 6px; }
+  .class-strip { grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .class-tile-name { font-size: 10px; }
+}
 
 @keyframes bounce {
   0%, 100% { transform: translateX(-50%) translateY(0); }

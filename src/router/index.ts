@@ -36,8 +36,41 @@ const router = createRouter({
       path: '/support',
       name: 'support',
       component: () => import('../views/SupportView.vue')
+    },
+    // Content pages (2026-10-02). `fullBleed`: they draw their own top bar and
+    // footer, so App.vue hides the classic header, as on the homepage.
+    {
+      path: '/adventures',
+      name: 'adventures',
+      component: () => import('../views/AdventuresView.vue'),
+      meta: { fullBleed: true }
+    },
+    {
+      path: '/adventures/:slug',
+      name: 'adventure',
+      component: () => import('../views/AdventureView.vue'),
+      props: true,
+      meta: { fullBleed: true }
+    },
+    {
+      path: '/classes',
+      name: 'classes',
+      component: () => import('../views/ClassesView.vue'),
+      meta: { fullBleed: true }
+    },
+    {
+      path: '/roadmap',
+      name: 'roadmap',
+      component: () => import('../views/RoadmapView.vue'),
+      meta: { fullBleed: true }
     }
-  ]
+  ],
+  // A new page opens from the top; back/forward returns where you were; #anchors still work.
+  scrollBehavior(to, _from, savedPosition) {
+    if (savedPosition) return savedPosition
+    if (to.hash) return { el: to.hash, top: 80 }
+    return { top: 0 }
+  }
 })
 
 export default router

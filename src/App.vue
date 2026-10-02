@@ -2,13 +2,14 @@
 import { RouterLink, RouterView, useRoute } from 'vue-router'
 import Home from './components/Home.vue'
 
-// The homepage has its own full-screen layout and navbar: the classic header
-// stays on every other page (privacy, tos, account-deletion, support, about).
+// The homepage and the content pages (route meta `fullBleed`) have their own
+// full-screen layout and navbar: the classic header stays on the other pages
+// (privacy, tos, account-deletion, support, about).
 const route = useRoute()
 </script>
 
 <template>
-  <header v-if="route.path !== '/'">
+  <header v-if="route.path !== '/' && !route.meta.fullBleed">
     <img alt="Vue logo" class="logo" src="@/assets/logo.png" width="125" height="125" />
 
     <div class="wrapper">
@@ -21,12 +22,24 @@ const route = useRoute()
     </div>
   </header>
 
+  <!-- The content pages fade instead of bouncing: a scale-from-zero on a long page looks broken. -->
   <router-view v-slot="{ Component }">
-    <transition name="bounce" mode="out-in">
+    <transition :name="route.meta.fullBleed ? 'page-fade' : 'bounce'" mode="out-in">
       <component :is="Component" />
     </transition>
   </router-view>
 </template>
+
+<style>
+.page-fade-enter-active,
+.page-fade-leave-active {
+  transition: opacity 0.25s ease;
+}
+.page-fade-enter-from,
+.page-fade-leave-to {
+  opacity: 0;
+}
+</style>
 
 <style scoped>
 
