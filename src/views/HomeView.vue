@@ -90,8 +90,8 @@ onMounted(() => {
   sectionEls.forEach((el) => observer?.observe(el))
 })
 
+// `home-full` is removed by App.vue once this page has faded out, not here.
 onBeforeUnmount(() => {
-  document.body.classList.remove('home-full')
   window.removeEventListener('scroll', onScroll)
   observer?.disconnect()
 })

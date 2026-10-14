@@ -23,9 +23,9 @@ onMounted(() => {
   document.title = `${props.title} — MasterAI`
   document.body.classList.add('site-full')
 })
+// `site-full` is removed by App.vue once this page has faded out, not here.
 onBeforeUnmount(() => {
   document.title = previousTitle
-  document.body.classList.remove('site-full')
 })
 </script>
 

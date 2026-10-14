@@ -6,6 +6,13 @@ import Home from './components/Home.vue'
 // full-screen layout and navbar: the classic header stays on the other pages
 // (privacy, tos, account-deletion, support, about).
 const route = useRoute()
+
+// The full-screen body classes (`home-full`, `site-full`) are dropped only when the old page
+// has finished fading out: dropped earlier, main.css squeezes the leaving page into a narrow
+// column for a moment. The entering page adds its own class back when it mounts.
+const resetBodyLayout = () => {
+  document.body.classList.remove('home-full', 'site-full')
+}
 </script>
 
 <template>
@@ -22,9 +29,9 @@ const route = useRoute()
     </div>
   </header>
 
-  <!-- The content pages fade instead of bouncing: a scale-from-zero on a long page looks broken. -->
+  <!-- Every page fades: the old scale-from-zero "bounce" on a long page looked broken. -->
   <router-view v-slot="{ Component }">
-    <transition :name="route.meta.fullBleed ? 'page-fade' : 'bounce'" mode="out-in">
+    <transition name="page-fade" mode="out-in" @before-enter="resetBodyLayout">
       <component :is="Component" />
     </transition>
   </router-view>
