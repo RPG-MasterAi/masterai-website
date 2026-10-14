@@ -39,6 +39,11 @@ import { DISCORD, SITE_NAV, STORE } from '@/data/links'
     <div class="gold-divider-wide" />
     <div class="copyright">
       <p>© 2026 MasterAI — RPGMaster.ai. All rights reserved.</p>
+      <!-- Company details required by Italian law; same wording as the old site (TheWelcome.vue, "Company info"). -->
+      <p class="company">
+        MASTERAI S.R.L.S. · Via degli Aceri 77, 00172 Rome ·
+        Italy Tax Code / VAT Number: 17291571002 · Share Capital: €500.00 fully paid
+      </p>
       <!-- Attribution required by the CC-BY-4.0 licence of the SRD 5.1 (class, subclass and rules names). -->
       <p class="srd">
         This work includes material taken from the System Reference Document 5.1 ("SRD 5.1") by Wizards of
@@ -81,6 +86,7 @@ footer.site-footer {
 }
 .copyright { text-align: center; padding-top: 24px; }
 .copyright p { font-size: 12px; color: #555; letter-spacing: 1px; margin: 0; }
+.copyright .company { margin-top: 8px; font-size: 11px; line-height: 1.6; }
 .copyright .srd { max-width: 760px; margin: 16px auto 0; font-size: 11px; line-height: 1.6; letter-spacing: 0; color: #4a4a4a; }
 .srd-link { color: #6b6b6b; text-decoration: underline; }
 .srd-link:hover { color: #c9a84c; background-color: transparent; }
