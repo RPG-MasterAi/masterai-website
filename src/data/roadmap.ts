@@ -23,7 +23,6 @@ export const ROADMAP: RoadmapStage[] = [
     title: 'Built, now in testing',
     intro: 'The code is written and our testers are playing it.',
     items: [
-      { title: 'The Warlock class', text: 'Make a pact with an otherworldly patron. The twelfth class, starting with The Fiend.' },
       { title: 'Choose your skills and Expertise', text: 'Pick your skill proficiencies and Expertise yourself when you create a character.' },
       { title: 'Custom race', text: 'Invent your own race: give it a name and choose its ability bonuses.' },
       { title: 'Full racial traits', text: "Every race with its complete set of traits, like the dragonborn's breath weapon and draconic ancestry." },

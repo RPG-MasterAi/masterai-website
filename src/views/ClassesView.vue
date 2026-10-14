@@ -49,7 +49,7 @@ onBeforeUnmount(() => {
       <p class="eyebrow">Classes</p>
       <h1 class="page-title">Choose Your <span class="gold">Class</span></h1>
       <p class="page-intro">
-        {{ capitalize(playableWord) }} classes built on the 5th edition rules, and the Warlock coming soon.
+        {{ capitalize(playableWord) }} classes built on the 5th edition rules.
         Tap one to discover how it plays.
       </p>
     </header>

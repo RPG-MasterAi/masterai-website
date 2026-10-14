@@ -3,7 +3,7 @@
 // (masterai app, lib/tolgee/en.json: new_chat_menu.class.* / new_chat_menu.race.*).
 // Subclass lines: C:\App\brainstorm\sito-masterai\classi\classi.md (Ryan, checked by Stanley
 // against the SRD 5.1, 2026-10-02). The app has one subclass per class today.
-// The Warlock exists in the data but is switched off in the public app: "Coming soon".
+// The Warlock is playable since 2026-10-14 (Marco). `comingSoon` marks a class not yet released.
 // Portraits: masterai app, assets/classes and assets/races (512x512 webp).
 
 import barbarian from '@/assets/classes/barbarian.webp'
@@ -141,8 +141,7 @@ export const CLASSES: HeroClass[] = [
     image: warlock,
     description: 'Individuals who have made a pact with otherworldly entities, warlocks gain supernatural powers in exchange for servitude, wielding unique abilities and dark invocations.',
     attributes: 'CHA, then CON and DEX',
-    subclass: { name: 'The Fiend', text: 'A pact with a demonic patron that grants fire, resilience and dark luck.' },
-    comingSoon: true
+    subclass: { name: 'The Fiend', text: 'A pact with a demonic patron that grants fire, resilience and dark luck.' }
   }
 ]
 

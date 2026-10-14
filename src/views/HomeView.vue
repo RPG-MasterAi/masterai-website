@@ -21,7 +21,7 @@ const ADVENTURE_TEASER = ADVENTURES.slice(0, 3)
 const STATS = [
   { value: '100K+', label: 'Downloads' },
   { value: '1,600+', label: 'Reviews' },
-  // What the public app offers today: the Warlock is still switched off.
+  // What the public app offers today (classes marked comingSoon are not counted).
   { value: String(PLAYABLE_CLASSES), label: 'Classes' },
   { value: String(RACES.length), label: 'Races' },
   { value: '20', label: 'Max Level' }
