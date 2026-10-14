@@ -1,12 +1,8 @@
 <script setup lang="ts">
-import VueMarkdown from 'vue-markdown-render'
+import LegalPage from '@/components/site/LegalPage.vue'
 import privacyPolicy from '@/assets/privacy.md?raw'
 </script>
 
 <template>
-  <VueMarkdown :source="privacyPolicy" :options="{html: true, linkify: true, typographer: true}"/>
+  <LegalPage title="Privacy Policy" :source="privacyPolicy" />
 </template>
-
-<style scoped>
-
-</style>

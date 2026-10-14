@@ -20,12 +20,15 @@ const router = createRouter({
     {
       path: '/privacy',
       name: 'privacy',
-      component: () => import('../views/PrivacyView.vue')
+      component: () => import('../views/PrivacyView.vue'),
+      // Legal pages in the new frame since 2026-10-15; same paths, the app and the stores link here.
+      meta: { fullBleed: true }
     },
     {
       path: '/tos',
       name: 'TOS',
-      component: () => import('../views/TosView.vue')
+      component: () => import('../views/TosView.vue'),
+      meta: { fullBleed: true }
     },
     {
       path: '/account-deletion',
