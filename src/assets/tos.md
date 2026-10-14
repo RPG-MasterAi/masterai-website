@@ -238,27 +238,3 @@ MasterAi shall not be liable for any failure or delay in the performance of its 
 **Privacy:** privacy@rpgmaster.ai
 **DSA point of contact (EU):** support@rpgmaster.ai
 **Last updated:** May 2026
-
-> **[DISCLAIMER FOR MARCO — REMOVE BEFORE PUBLICATION]**
->
-> This is the v4 of the Terms of Use, aligned with Privacy Policy v4. Changes vs v2:
->
-> 1. **Section 3(c)+(d) expanded** with 13 categories of Strictly Prohibited Content (CSAM, sexual content, NCII, deepfakes, sexualized impersonation, hate speech, self-harm, illegal activities, privacy violations, disinformation, IP infringement, defamation, harmful to minors, spam) — preventive protection post-Grok controversy + AI Act + Google Play AI policies
-> 2. **Section 3(g) NEW** — third-party services clause (Google Play, xAI, AWS, AdMob)
-> 3. **Section 8(d) expanded** — explicit references to Italian Codice Consumo articles 33-37 and 64-67 + Article 1229 of Italian Civil Code
-> 4. **Section 11 NEW** — Reporting and TAKE IT DOWN Act compliance (48-hour NCII takedown, NCMEC CyberTipline, INHOPE, Polizia Postale)
-> 5. **Section 12 NEW** — Digital Services Act single point of contact (EU Reg. 2022/2065)
-> 6. **Section 13 NEW** — Force Majeure clause
-> 7. **Address fixed** in Section 10(c) from Via Appia Antica 168 to Via degli Aceri 77, 00172 Roma
->
-> Still pending (for IT lawyer review in 2-3 weeks):
-> - Linguistic and legal polish (native English legal style)
-> - Verify exact Public Law number for TAKE IT DOWN Act once published
-> - Specific Apple App Store clauses if iOS launch is planned
-> - Coordinated EULA review
-> - Detailed cancellation flow documentation for Google Play subscriptions
->
-> Before publishing:
-> - Verify the URL https://rpgmaster.ai/privacy points to Privacy Policy v4
-> - Test all email contacts (support@, privacy@) are receiving
-> - Remove this DISCLAIMER block
