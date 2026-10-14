@@ -19,8 +19,10 @@ import { DISCORD, SITE_NAV, STORE } from '@/data/links'
 const ADVENTURE_TEASER = ADVENTURES.slice(0, 3)
 
 const STATS = [
+  // Google Play listing, read 2026-10-15: "100K+ Downloads", "2.2K reviews" (2.11K in the page data).
+  // Rounded down so it stays true; App Store reviews not added (counted per country).
   { value: '100K+', label: 'Downloads' },
-  { value: '1,600+', label: 'Reviews' },
+  { value: '2,100+', label: 'Reviews' },
   // What the public app offers today (classes marked comingSoon are not counted).
   { value: String(PLAYABLE_CLASSES), label: 'Classes' },
   { value: String(RACES.length), label: 'Races' },
@@ -70,6 +72,9 @@ const onScroll = () => {
   navVisible.value = window.scrollY > window.innerHeight * 0.7
 }
 
+// The brand is the link home; on the homepage itself it goes back to the top.
+const toTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
+
 let observer: IntersectionObserver | null = null
 
 onMounted(() => {
@@ -101,10 +106,10 @@ onBeforeUnmount(() => {
   <div class="home">
     <!-- ═══ NAVBAR ═══ -->
     <nav class="nav-bar" :class="navVisible ? 'visible' : 'hidden'">
-      <div class="brand">
+      <a href="/" class="brand" aria-label="MasterAI home, back to the top" @click.prevent="toTop">
         <span class="brand-master">MASTER</span>
         <span class="brand-ai">AI</span>
-      </div>
+      </a>
       <div class="nav-links">
         <RouterLink v-for="item in SITE_NAV" :key="item.to" :to="item.to" class="nav-link">
           {{ item.label }}
@@ -118,7 +123,7 @@ onBeforeUnmount(() => {
       <div class="hero-video-container">
         <iframe
           src="https://www.youtube.com/embed/XPVT_lPft3I?autoplay=1&mute=1&loop=1&playlist=XPVT_lPft3I&controls=0&showinfo=0&modestbranding=1&rel=0&disablekb=1&iv_load_policy=3&playsinline=1"
-          title="RPGMaster AI Trailer"
+          title="MasterAI Trailer"
           frameborder="0"
           allow="autoplay; encrypted-media"
           allowfullscreen
@@ -166,7 +171,7 @@ onBeforeUnmount(() => {
           Your Only Limitation Is<br /><span class="gold">Your Imagination</span>
         </h2>
         <p class="tagline-text">
-          Carry a personal Game Master in your pocket. MasterAI offers you the thrill of a D&amp;D
+          Carry a personal Game Master in your pocket. MasterAI offers you the thrill of a DnD
           session right from your phone — extraordinary text adventures powered by AI, at any time
           and place.
         </p>
@@ -567,12 +572,23 @@ body.home-full #app {
 }
 
 @media (max-width: 860px) {
-  .nav-links { display: none; }
+  /* The menu stays on tablets and phones (it used to disappear): tighter, then without Download. */
+  .nav-links { gap: 16px; margin-right: 16px; }
+  .nav-link { font-size: 12px; letter-spacing: 1px; }
   /* Five stats do not fit side by side on a phone (the last two ended off screen): 3 + 2. */
   .stats-grid { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
   .stat-item { padding: 20px 8px; }
   .stat-item:nth-child(3)::after { display: none; }
   .class-strip { grid-template-columns: repeat(4, 1fr); }
+}
+@media (max-width: 720px) {
+  /* As on the content pages: on a phone the menu wins, the hero already has the store buttons. */
+  .cta-small { display: none; }
+  .nav-links { gap: 14px; margin-right: 0; }
+  .nav-link { font-size: 11px; }
+}
+@media (max-width: 380px) {
+  .brand-ai { display: none; }
 }
 @media (max-width: 480px) {
   /* The Download button used to cover the MASTER AI brand on a 390px phone. */

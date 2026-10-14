@@ -1,4 +1,4 @@
-// The adventures you can start in the public app (Android 1.1.17, iOS 1.1.20).
+// The adventures you can start in the public app.
 // Texts: C:\App\brainstorm\sito-masterai\ambientazioni\*.md (Ryan, reviewed by Stanley, 2026-10-02).
 // Rule from the writers' table: nothing past the first scene, no spoilers, no famous-franchise names.
 // Inline `code` in a paragraph is rendered as <code>.
@@ -212,7 +212,7 @@ export const ADVENTURES: Adventure[] = [
   },
   {
     slug: 'forge-your-kingdom',
-    title: 'Forge your Kingdom',
+    title: 'Forge Your Kingdom',
     tagline: 'Will you be a symbol of freedom or rule with an iron fist? The fate of the Forgotten Land lies in your hands.',
     card: forgeCard,
     hero: forgeHero,

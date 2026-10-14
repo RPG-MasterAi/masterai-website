@@ -2,8 +2,9 @@
 // (Stanley, 2026-10-02), approved by Marco the same day: "announce everything", with
 // "an improved campaign memory" and the new "More random dice" line.
 // No dates, no prices, nothing about the shop (Marco's rule of 2026-09-15).
-// Compared with the public app: Android 1.1.17, iOS 1.1.20. When a release ships one of
-// these, move it out of here.
+// Compared with the public app: when a release ships one of these, move it out of here.
+// Memory line rewritten on Marco's decision of 2026-10-15: the Master already remembers well,
+// new technology will make it remember more.
 
 export interface RoadmapItem {
   title: string
@@ -38,7 +39,7 @@ export const ROADMAP: RoadmapStage[] = [
       { title: 'Multiclassing', text: 'Combine more than one class in the same hero.' },
       { title: 'The Shapechanger race', text: 'A playable shapeshifter race, coming back after a full rework.' },
       { title: 'Weapon training, redone', text: 'Choose your weapon proficiencies from a proper list.' },
-      { title: 'An improved campaign memory', text: 'The Master will remember your campaign better.' },
+      { title: 'An even better campaign memory', text: 'The Master already remembers your campaign well. New cutting-edge technology is on its way to help it remember even more.' },
       { title: 'Coins by denomination', text: 'Gold, silver and copper counted separately, as the rules intend.' }
     ]
   },

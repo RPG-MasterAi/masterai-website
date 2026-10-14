@@ -1,4 +1,4 @@
-// Classes and races of the public app (Android 1.1.17, iOS 1.1.20).
+// Classes and races of the public app.
 // Class and race descriptions are the in-app ones, word for word
 // (masterai app, lib/tolgee/en.json: new_chat_menu.class.* / new_chat_menu.race.*).
 // Subclass lines: C:\App\brainstorm\sito-masterai\classi\classi.md (Ryan, checked by Stanley

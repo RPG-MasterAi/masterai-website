@@ -17,7 +17,7 @@ const resetBodyLayout = () => {
 
 <template>
   <header v-if="route.path !== '/' && !route.meta.fullBleed">
-    <img alt="Vue logo" class="logo" src="@/assets/logo.png" width="125" height="125" />
+    <img alt="MasterAI logo" class="logo" src="@/assets/logo-250.webp" width="125" height="125" />
 
     <div class="wrapper">
       <Home msg="MasterAi" />

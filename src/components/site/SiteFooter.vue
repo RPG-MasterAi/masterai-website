@@ -25,7 +25,7 @@ import { DISCORD, SITE_NAV, STORE } from '@/data/links'
           <a :href="STORE.android" class="footer-link">Google Play</a>
           <a :href="STORE.ios" class="footer-link">App Store</a>
           <RouterLink to="/support" class="footer-link">Support</RouterLink>
-          <a href="mailto:Info@rpgmaster.ai" class="footer-link">Contact</a>
+          <a href="mailto:info@rpgmaster.ai" class="footer-link">Contact</a>
         </div>
       </div>
       <div>
@@ -57,7 +57,8 @@ import { DISCORD, SITE_NAV, STORE } from '@/data/links'
   </footer>
 </template>
 
-<!-- `footer.site-footer` outranks the homepage reset (`.home *`), which also reaches this root element. -->
+<!-- `footer.site-footer` outranks the homepage reset (`.home *`: margin and padding 0), which also reaches
+     this footer: every rule that sets a margin or a padding starts with it. -->
 <style scoped>
 footer.site-footer {
   padding: 60px 20px 40px;
@@ -66,14 +67,14 @@ footer.site-footer {
   margin: 0 auto;
   font-family: 'Crimson Text', Georgia, serif;
 }
-.footer-grid {
+footer.site-footer .footer-grid {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 40px; margin-bottom: 40px;
 }
-.footer-brand { font-family: 'Cinzel Decorative', serif; font-size: 20px; font-weight: 900; color: #c9a84c; margin: 0 0 16px; }
+footer.site-footer .footer-brand { font-family: 'Cinzel Decorative', serif; font-size: 20px; font-weight: 900; color: #c9a84c; margin: 0 0 16px; }
 .red { color: #8b2500; }
 .footer-tag { font-size: 13px; line-height: 1.7; color: #6b6b6b; margin: 0; }
-.footer-head {
+footer.site-footer .footer-head {
   font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 3px; color: #6b6b6b;
   text-transform: uppercase; margin: 0 0 16px; font-weight: 400;
 }
@@ -84,10 +85,10 @@ footer.site-footer {
   width: 100%; height: 1px;
   background: linear-gradient(90deg, transparent, rgba(201, 168, 76, 0.3) 20%, rgba(201, 168, 76, 0.3) 80%, transparent);
 }
-.copyright { text-align: center; padding-top: 24px; }
+footer.site-footer .copyright { text-align: center; padding-top: 24px; }
 .copyright p { font-size: 12px; color: #555; letter-spacing: 1px; margin: 0; }
-.copyright .company { margin-top: 8px; font-size: 11px; line-height: 1.6; }
-.copyright .srd { max-width: 760px; margin: 16px auto 0; font-size: 11px; line-height: 1.6; letter-spacing: 0; color: #4a4a4a; }
+footer.site-footer .copyright .company { margin-top: 8px; font-size: 11px; line-height: 1.6; }
+footer.site-footer .copyright .srd { max-width: 760px; margin: 16px auto 0; font-size: 11px; line-height: 1.6; letter-spacing: 0; color: #4a4a4a; }
 .srd-link { color: #6b6b6b; text-decoration: underline; }
 .srd-link:hover { color: #c9a84c; background-color: transparent; }
 </style>

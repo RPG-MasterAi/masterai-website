@@ -3,6 +3,7 @@ import { computed } from 'vue'
 import { RouterLink } from 'vue-router'
 import SiteShell from '@/components/site/SiteShell.vue'
 import { ADVENTURES, findAdventure } from '@/data/adventures'
+import { STORE } from '@/data/links'
 
 const props = defineProps<{ slug: string }>()
 
@@ -27,6 +28,13 @@ const segments = (text: string) => text.split('`')
             <template v-for="(w, i) in adventure.title.split(' ')" :key="i"><span class="nw">{{ w }}</span>{{ ' ' }}</template>
           </h1>
           <p class="tagline">{{ adventure.tagline }}</p>
+          <!-- A discreet way to the store for whoever is convinced before the bottom band. -->
+          <p class="play-line">
+            Play this adventure —
+            <a :href="STORE.android" class="play-link">Google Play</a>
+            <span class="sep">·</span>
+            <a :href="STORE.ios" class="play-link">App Store</a>
+          </p>
         </div>
       </header>
 
@@ -91,6 +99,13 @@ const segments = (text: string) => text.split('`')
 }
 .nw { white-space: nowrap; }
 .tagline { font-size: clamp(17px, 2vw, 21px); font-style: italic; color: #e8e0d0; margin: 0; text-shadow: 0 2px 16px rgba(0, 0, 0, 0.9); }
+.play-line {
+  margin: 18px 0 0; font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  color: #b8ad98; text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
+}
+.play-link { white-space: nowrap; color: #c9a84c; border-bottom: 1px solid rgba(201, 168, 76, 0.4); padding-bottom: 1px; }
+.play-link:hover { color: #e6c86e; background-color: transparent; }
+.sep { margin: 0 8px; color: #6b6b6b; }
 
 .body { max-width: 780px; margin: 0 auto; padding: 40px 20px 20px; }
 .block { margin-bottom: 40px; }
