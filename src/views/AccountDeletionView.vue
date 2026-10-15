@@ -1,12 +1,8 @@
 <script setup lang="ts">
-import VueMarkdown from 'vue-markdown-render'
+import LegalPage from '@/components/site/LegalPage.vue'
 import accountDeletion from '@/assets/account-deletion.md?raw'
 </script>
 
 <template>
-  <VueMarkdown :source="accountDeletion" :options="{html: true, linkify: true, typographer: true}"/>
+  <LegalPage title="Account Deletion" :source="accountDeletion" />
 </template>
-
-<style scoped>
-
-</style>

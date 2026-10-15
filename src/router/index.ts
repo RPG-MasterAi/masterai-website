@@ -33,7 +33,8 @@ const router = createRouter({
     {
       path: '/account-deletion',
       name: 'account-deletion',
-      component: () => import('../views/AccountDeletionView.vue')
+      component: () => import('../views/AccountDeletionView.vue'),
+      meta: { fullBleed: true }
     },
     {
       path: '/support',
