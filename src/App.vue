@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterLink, RouterView, useRoute } from 'vue-router'
 import Home from './components/Home.vue'
+import { pageLeft } from './router'
 
 // The homepage and the content pages (route meta `fullBleed`) have their own
 // full-screen layout and navbar: the classic header stays on the other pages
@@ -31,7 +32,7 @@ const resetBodyLayout = () => {
 
   <!-- Every page fades: the old scale-from-zero "bounce" on a long page looked broken. -->
   <router-view v-slot="{ Component }">
-    <transition name="page-fade" mode="out-in" @before-enter="resetBodyLayout">
+    <transition name="page-fade" mode="out-in" @before-enter="resetBodyLayout" @after-leave="pageLeft">
       <component :is="Component" />
     </transition>
   </router-view>

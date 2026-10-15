@@ -1,6 +1,16 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
+// Pages fade out before the next one fades in (App.vue). The scroll must wait for that:
+// done right away, the page you are leaving jumps to its top and shows it for a moment
+// (Marco, 2026-10-15). App.vue calls `pageLeft` when the old page is gone.
+let afterLeave: (() => void) | null = null
+export const pageLeft = () => {
+  const run = afterLeave
+  afterLeave = null
+  run?.()
+}
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -70,10 +80,16 @@ const router = createRouter({
     }
   ],
   // A new page opens from the top; back/forward returns where you were; #anchors still work.
-  scrollBehavior(to, _from, savedPosition) {
-    if (savedPosition) return savedPosition
-    if (to.hash) return { el: to.hash, top: 80 }
-    return { top: 0 }
+  scrollBehavior(to, from, savedPosition) {
+    const position = savedPosition ?? (to.hash ? { el: to.hash, top: 80 } : { top: 0 })
+    // No fade in these cases, so nothing to wait for: first load, an anchor on the same page,
+    // or the same page with other data (one adventure to the next).
+    if (!from.matched.length || to.path === from.path || to.matched[0] === from.matched[0]) return position
+    return new Promise((resolve) => {
+      afterLeave = () => requestAnimationFrame(() => resolve(position))
+      // Safety net: if the fade never reports back, scroll anyway.
+      setTimeout(pageLeft, 700)
+    })
   }
 })
 
