@@ -5,7 +5,10 @@ import { ROADMAP } from '@/data/roadmap'
 </script>
 
 <template>
-  <SiteShell title="Roadmap">
+  <SiteShell
+    title="Roadmap"
+    description="What we are building next for MasterAI. No dates on purpose: each feature ships when it is ready."
+  >
     <header class="page-head">
       <p class="eyebrow">Roadmap</p>
       <h1 class="page-title">What's <span class="gold">Coming</span></h1>

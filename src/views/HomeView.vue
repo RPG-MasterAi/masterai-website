@@ -5,6 +5,8 @@ import SiteFooter from '@/components/site/SiteFooter.vue'
 import { ADVENTURES } from '@/data/adventures'
 import { CLASSES, PLAYABLE_CLASSES, RACES } from '@/data/classes'
 import { DISCORD, SITE_NAV, STORE } from '@/data/links'
+import { HOME_STRUCTURED_DATA, usePageMeta } from '@/data/seo'
+import { useHead } from '@unhead/vue'
 
 // ═══════════════════════════════════════════
 // rpgmaster.ai homepage — BG3-inspired design
@@ -57,6 +59,15 @@ const REVIEWS = [
   { stars: 5, text: "Amazing game. The AI tracks your decisions well and the storytelling is fun. Really feels like you're living the adventure.", author: 'Play Store User' },
   { stars: 4, text: 'I really love this app. The game is great fun, the AI tracks your decisions well and the storytelling is engaging and immersive.', author: 'Play Store User' }
 ]
+
+usePageMeta(() => ({
+  title: 'AI Dungeon Master for Solo DnD Adventures',
+  description:
+    'Play solo DnD 5e adventures with an AI Game Master: say what your character does in your own words and the story answers. Free on Android and iPhone.'
+}))
+useHead({
+  script: [{ type: 'application/ld+json', innerHTML: JSON.stringify(HOME_STRUCTURED_DATA) }]
+})
 
 const navVisible = ref(false)
 const visible = reactive<Record<string, boolean>>({})

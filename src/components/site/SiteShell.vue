@@ -1,32 +1,29 @@
 <script setup lang="ts">
-import { onBeforeUnmount, onMounted, watch } from 'vue'
+import { onMounted } from 'vue'
 import { RouterLink } from 'vue-router'
 import { DISCORD, SITE_NAV, STORE } from '@/data/links'
+import { usePageMeta } from '@/data/seo'
 import SiteFooter from './SiteFooter.vue'
 
 // Frame of the content pages (adventures, classes, roadmap): same look as the
 // homepage, a solid top bar, the download band and the footer.
 // The legal and support pages keep their own layout and are not wrapped in this.
 
-const props = defineProps<{ title: string }>()
+const props = defineProps<{
+  title: string
+  description: string
+  image?: string
+  imageAlt?: string
+  noindex?: boolean
+}>()
 
-// Each content page names itself in the browser tab and in search results;
-// the old title comes back when the page is left.
-let previousTitle = ''
-watch(
-  () => props.title,
-  (t) => { document.title = `${t} — MasterAI` }
-)
+// Each content page names itself in the browser tab, in search results and in link previews.
+usePageMeta(() => ({ ...props }))
 
 onMounted(() => {
-  previousTitle = document.title
-  document.title = `${props.title} — MasterAI`
   document.body.classList.add('site-full')
 })
 // `site-full` is removed by App.vue once this page has faded out, not here.
-onBeforeUnmount(() => {
-  document.title = previousTitle
-})
 </script>
 
 <template>

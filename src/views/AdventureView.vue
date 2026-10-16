@@ -16,7 +16,12 @@ const segments = (text: string) => text.split('`')
 </script>
 
 <template>
-  <SiteShell :title="adventure ? adventure.title : 'Adventure not found'">
+  <SiteShell
+    :title="adventure ? adventure.title : 'Adventure not found'"
+    :description="adventure ? `${adventure.tagline} Play it with your AI Game Master in MasterAI.` : 'This adventure does not exist.'"
+    :image="adventure?.hero"
+    :image-alt="adventure?.heroAlt"
+  >
     <template v-if="adventure">
       <header class="hero">
         <img class="hero-img" :src="adventure.hero" :alt="adventure.heroAlt" />

@@ -1,5 +1,11 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
+import { usePageMeta } from '@/data/seo'
+
+usePageMeta(() => ({
+  title: 'Support',
+  description: 'Need help with MasterAI? Contact the team about your account, payments or a bug, and read the answers to common questions.'
+}))
 
 let originalAppStyle = ''
 let originalHeaderStyle = ''

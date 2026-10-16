@@ -5,7 +5,10 @@ import { ADVENTURES } from '@/data/adventures'
 </script>
 
 <template>
-  <SiteShell title="Adventures">
+  <SiteShell
+    title="Adventures"
+    description="Six worlds to explore with your AI Game Master, from a god-king's dungeon to a cyber-fantasy epic, and a seventh you write yourself."
+  >
     <header class="page-head">
       <p class="eyebrow">Adventures</p>
       <h1 class="page-title">Choose Your <span class="gold">World</span></h1>

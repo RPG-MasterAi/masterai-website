@@ -1,3 +1,12 @@
+<script setup lang="ts">
+import { usePageMeta } from '@/data/seo'
+
+usePageMeta(() => ({
+  title: 'About',
+  description: 'MasterAI is your personal AI Game Master: tell it what you do, as at a real tabletop, and it crafts the story and illustrates it.'
+}))
+</script>
+
 <template>
   <div class="about">
     <p>

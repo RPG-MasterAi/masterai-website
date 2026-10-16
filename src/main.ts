@@ -1,14 +1,17 @@
 import './assets/main.css'
 
-import { createApp } from 'vue'
+import { ViteSSG } from 'vite-ssg'
 import { createPinia } from 'pinia'
 
 import App from './App.vue'
-import router from './router'
+import { routes, scrollBehavior } from './router'
 
-const app = createApp(App)
-
-app.use(createPinia())
-app.use(router)
-
-app.mount('#app')
+// vite-ssg builds every page as real HTML (what Google and link previews read), then the
+// browser takes over as before (2026-10-16).
+export const createApp = ViteSSG(
+  App,
+  { routes, scrollBehavior, base: import.meta.env.BASE_URL },
+  ({ app }) => {
+    app.use(createPinia())
+  }
+)

@@ -44,7 +44,10 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <SiteShell title="Classes and Races">
+  <SiteShell
+    title="Classes and Races"
+    :description="`${capitalize(playableWord)} classes and ${racesWord} races built on the 5th edition rules. Pick your hero and play solo DnD adventures with an AI Game Master.`"
+  >
     <header class="page-head">
       <p class="eyebrow">Classes</p>
       <h1 class="page-title">Choose Your <span class="gold">Class</span></h1>

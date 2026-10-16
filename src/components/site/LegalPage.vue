@@ -5,11 +5,11 @@ import SiteShell from './SiteShell.vue'
 // Frame of the legal pages (privacy, terms, account deletion), 2026-10-15 (Marco: "va aggiornata
 // come questa"). Only the look changes: the text is the same markdown file, word for word, and the
 // address of each page stays the same, because the app and the stores link to it.
-defineProps<{ title: string; source: string }>()
+defineProps<{ title: string; description: string; source: string }>()
 </script>
 
 <template>
-  <SiteShell :title="title">
+  <SiteShell :title="title" :description="description">
     <article class="legal">
       <VueMarkdown :source="source" :options="{ html: true, linkify: true, typographer: true }" />
     </article>
