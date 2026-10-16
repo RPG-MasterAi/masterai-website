@@ -57,5 +57,8 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
-  ssgOptions
+  ssgOptions,
+  // vue-markdown-render ships ES modules without saying so: Node 18 (the one on Cloudflare's
+  // build image) refuses to load it during pre-rendering, so it is bundled in instead.
+  ssr: { noExternal: ['vue-markdown-render'] }
 })
