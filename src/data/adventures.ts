@@ -92,8 +92,8 @@ export const ADVENTURES: Adventure[] = [
       }
     ],
     gallery: [
-      { src: godKingFloorsTop, alt: 'Cutaway of the dungeon: the city of Cariddi Hold and the first six floors', caption: 'Cariddi Hold and the first six floors', tall: true },
-      { src: godKingFloorsDeep, alt: 'Cutaway of the dungeon: floors seven to twelve, down to the hellfire', caption: 'Floors seven to twelve', tall: true }
+      { src: godKingFloorsTop, alt: 'Cutaway of the dungeon: the city of Cariddi Hold and the first six floors', caption: 'Cariddi Hold and floors 1 to 6, from the Ring of Death to the Arena', tall: true },
+      { src: godKingFloorsDeep, alt: 'Cutaway of the dungeon: floors seven to twelve, down to the hellfire', caption: "Floors 7 to 12, from the Shifting Chambers down to the God-King's tomb", tall: true }
     ],
     bestFor: 'Players who like classic dungeon crawls, riddles and traps, and the tension of never knowing what comes next. You start at level 1: win the selection, or come back when you are stronger.'
   },
