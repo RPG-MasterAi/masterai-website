@@ -7,6 +7,9 @@ import { CLASSES, PLAYABLE_CLASSES, RACES } from '@/data/classes'
 import { DISCORD, SITE_NAV, STORE } from '@/data/links'
 import { HOME_STRUCTURED_DATA, usePageMeta } from '@/data/seo'
 import { useHead } from '@unhead/vue'
+import trailer720 from '@/assets/trailer/trailer-720.mp4'
+import trailer480 from '@/assets/trailer/trailer-480.mp4'
+import trailerPoster from '@/assets/trailer/trailer-poster.webp'
 
 // ═══════════════════════════════════════════
 // rpgmaster.ai homepage — BG3-inspired design
@@ -132,13 +135,13 @@ onBeforeUnmount(() => {
     <!-- ═══ HERO — FULL SCREEN VIDEO ═══ -->
     <section class="hero-wrapper">
       <div class="hero-video-container">
-        <iframe
-          src="https://www.youtube.com/embed/XPVT_lPft3I?autoplay=1&mute=1&loop=1&playlist=XPVT_lPft3I&controls=0&showinfo=0&modestbranding=1&rel=0&disablekb=1&iv_load_policy=3&playsinline=1"
-          title="MasterAI Trailer"
-          frameborder="0"
-          allow="autoplay; encrypted-media"
-          allowfullscreen
-        />
+        <!-- Our own file since 2026-10-18 (Marco): the YouTube embed showed the video title on top and
+             set Google cookies for every visitor. Same spot ("solo sottotitoli.mp4", no captions),
+             silent, 24 fps; phones get the lighter 480p file. -->
+        <video :poster="trailerPoster" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+          <source :src="trailer480" type="video/mp4" media="(max-width: 720px)" />
+          <source :src="trailer720" type="video/mp4" />
+        </video>
       </div>
       <div class="hero-overlay" />
       <div class="hero-content">
@@ -373,11 +376,10 @@ body.home-full #app {
   transform: translate(-50%, -50%);
   width: 100vw; height: 100vh; pointer-events: none;
 }
-.hero-video-container iframe {
-  position: absolute; top: 50%; left: 50%;
-  width: 177.78vh; height: 56.25vw;
-  min-width: 100%; min-height: 100%;
-  transform: translate(-50%, -50%);
+.hero-video-container video {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
 }
 .hero-overlay {
   position: absolute; inset: 0;
