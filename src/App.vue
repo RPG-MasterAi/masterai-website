@@ -1,6 +1,8 @@
 <script setup lang="ts">
+import { onMounted } from 'vue'
 import { RouterLink, RouterView, useRoute } from 'vue-router'
 import Home from './components/Home.vue'
+import { startAds } from './data/ads'
 import { pageLeft } from './router'
 
 // The homepage and the content pages (route meta `fullBleed`) have their own
@@ -14,6 +16,9 @@ const route = useRoute()
 const resetBodyLayout = () => {
   document.body.classList.remove('home-full', 'site-full')
 }
+
+// Google Ads measurement, US visitors only (src/data/ads.ts).
+onMounted(startAds)
 </script>
 
 <template>
