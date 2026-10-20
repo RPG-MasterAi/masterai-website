@@ -99,6 +99,9 @@ export const startAds = async () => {
   // Capture phase: runs before the link is followed, whatever component the button is in.
   document.addEventListener('click', onClick, true)
   if (!AW_ID) return
+  // The published privacy policy (section 9.3) promises to honour the Global Privacy Control signal:
+  // a browser that sends it never gets the tag (Toby, 2026-10-21).
+  if ((navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl === true) return
   const country = await visitorCountry()
   if (country && AD_COUNTRIES.includes(country)) loadTag()
 }
