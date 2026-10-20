@@ -1,4 +1,17 @@
 import './assets/main.css'
+// Fonts served by the site itself, not by fonts.googleapis.com (2026-10-21, Toby): loading them from
+// Google sent every visitor's IP address to Google, Europeans included. Same families and weights as before.
+import '@fontsource/cinzel/400.css'
+import '@fontsource/cinzel/600.css'
+import '@fontsource/cinzel/700.css'
+import '@fontsource/cinzel/900.css'
+import '@fontsource/cinzel-decorative/400.css'
+import '@fontsource/cinzel-decorative/700.css'
+import '@fontsource/cinzel-decorative/900.css'
+import '@fontsource/crimson-text/400.css'
+import '@fontsource/crimson-text/600.css'
+import '@fontsource/crimson-text/700.css'
+import '@fontsource/crimson-text/400-italic.css'
 
 import { ViteSSG } from 'vite-ssg'
 import { createPinia } from 'pinia'
