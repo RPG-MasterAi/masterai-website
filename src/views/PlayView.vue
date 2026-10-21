@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
+import { useHead } from '@unhead/vue'
 import { RouterLink } from 'vue-router'
 import { STORE } from '@/data/links'
 import { REVIEWS } from '@/data/reviews'
@@ -25,17 +26,12 @@ import googlePlayBadge from '@/assets/badges/google-play-badge.png'
 // The Realm Crier (the players' newspaper) gets its link here once it is published.
 const GAZZETTA_URL = ''
 
-type Device = 'ios' | 'android' | null
-
-// Phones see their own store first; computers see both.
-const device = ref<Device>(null)
-const detectDevice = (): Device => {
-  const ua = navigator.userAgent
-  // iPadOS reports itself as a Mac: a Mac with a touch screen is an iPad.
-  if (/iPhone|iPad|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1)) return 'ios'
-  if (/Android/.test(ua)) return 'android'
-  return null
-}
+// Phones see their own store first; computers see both. The device is marked on <html> by a small
+// script in <head>, before the page is drawn: done by Vue after loading, phones saw both buttons
+// for a moment and then one vanished (Marco, 2026-10-21). The CSS below hides the other store.
+// `data-cfasync="false"` keeps Cloudflare's Rocket Loader from delaying it.
+// iPadOS reports itself as a Mac: a Mac with a touch screen is an iPad.
+const MARK_DEVICE = `(function(){var u=navigator.userAgent,d=/iPhone|iPad|iPod/.test(u)||(/Macintosh/.test(u)&&navigator.maxTouchPoints>1)?'ios':/Android/.test(u)?'android':'';if(d)document.documentElement.setAttribute('data-device',d)})()`
 
 const video = ref<HTMLVideoElement | null>(null)
 const soundOn = ref(false)
@@ -60,10 +56,14 @@ usePageMeta(() => ({
     'Play solo DnD 5e adventures with an AI Game Master: say what your character does in your own words and the story answers.',
   noindex: true
 }))
+useHead({
+  script: [{ innerHTML: MARK_DEVICE, 'data-cfasync': 'false', tagPriority: 'critical' }]
+})
 
 onMounted(() => {
   document.body.classList.add('site-full')
-  device.value = detectDevice()
+  // Arriving from another page of the site, the <head> script may not have run: mark it here too.
+  new Function(MARK_DEVICE)()
 })
 // `site-full` is removed by App.vue once this page has faded out, not here.
 </script>
@@ -99,28 +99,26 @@ onMounted(() => {
         <h1 class="hero-title">Your AI <span class="gold">Dungeon Master</span></h1>
         <p class="hero-subtitle">Free on iPhone and Android</p>
 
-        <div class="signs" :class="device ? 'one' : 'both'">
+        <div class="signs device-signs">
           <a
-            v-if="device !== 'android'"
             :href="STORE.ios"
-            class="sign"
+            class="sign sign-ios"
             aria-label="Download MasterAI on the App Store"
           >
             <span class="sign-word">Download</span>
             <img :src="appStoreBadge" alt="Download on the App Store" class="badge" width="150" height="50" />
           </a>
           <a
-            v-if="device !== 'ios'"
             :href="STORE.android"
-            class="sign"
+            class="sign sign-android"
             aria-label="Get MasterAI on Google Play"
           >
             <span class="sign-word">Download</span>
             <img :src="googlePlayBadge" alt="Get it on Google Play" class="badge" width="168" height="50" />
           </a>
         </div>
-        <p v-if="device === 'ios'" class="also">Also on <a :href="STORE.android">Android</a></p>
-        <p v-if="device === 'android'" class="also">Also on <a :href="STORE.ios">iPhone</a></p>
+        <p class="also also-ios">Also on <a :href="STORE.android">Android</a></p>
+        <p class="also also-android">Also on <a :href="STORE.ios">iPhone</a></p>
       </div>
     </section>
 
@@ -192,6 +190,19 @@ body.site-full #app {
   margin: 0;
   padding: 0;
   display: block;
+}
+
+/* Which store a phone sees: MARK_DEVICE sets data-device on <html> before the page is drawn.
+   Global on purpose (a scoped rule cannot look at <html>); every selector starts at .play. */
+.play .also { display: none; }
+html[data-device='ios'] .play .device-signs .sign-android,
+html[data-device='android'] .play .device-signs .sign-ios { display: none; }
+html[data-device='ios'] .play .also-ios,
+html[data-device='android'] .play .also-android { display: block; }
+html[data-device] .play .device-signs .badge { height: 60px; }
+html[data-device] .play .device-signs .sign-word { font-size: 20px; }
+@media (max-width: 480px) {
+  html[data-device] .play .device-signs .badge { height: 54px; }
 }
 </style>
 
@@ -279,8 +290,6 @@ body.site-full #app {
 }
 /* Both badges at the same height, as Apple's guidelines ask when they sit side by side. */
 .badge { display: block; height: 50px; width: auto; }
-.signs.one .badge { height: 60px; }
-.signs.one .sign-word { font-size: 20px; }
 
 /* ── what it is ── */
 .about { max-width: 760px; margin: 0 auto; padding: 56px 20px 24px; text-align: center; }
@@ -333,6 +342,5 @@ body.site-full #app {
   .signs { gap: 14px; }
   .sign { padding: 12px 18px 14px; }
   .badge { height: 42px; }
-  .signs.one .badge { height: 54px; }
 }
 </style>
