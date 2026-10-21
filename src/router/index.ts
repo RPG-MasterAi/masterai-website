@@ -79,6 +79,13 @@ export const routes: RouteRecordRaw[] = [
     component: () => import('../views/RoadmapView.vue'),
     meta: { fullBleed: true }
   },
+  // Landing page of the Google Ads video campaign (2026-10-21): not in the menu, not in search.
+  {
+    path: '/play',
+    name: 'play',
+    component: () => import('../views/PlayView.vue'),
+    meta: { fullBleed: true }
+  },
   // Any other address: a real "not found" page. The build writes it to 404.html, which
   // Cloudflare Pages serves with status 404 (before, every address answered with the home).
   {

@@ -17,6 +17,7 @@ const bodyClass = (route: string) =>
   route === '/' ? 'home-full' : ['/about', '/support'].includes(route) ? '' : 'site-full'
 
 let pages: string[] = []
+const NOT_IN_SITEMAP = ['/play']
 
 const ssgOptions: ViteSSGOptions = {
   dirStyle: 'flat',
@@ -38,8 +39,9 @@ const ssgOptions: ViteSSGOptions = {
   onFinished() {
     // Only needed during the build; it would otherwise be published with the site.
     rmSync(join('dist', 'ssr-manifest.json'), { force: true })
-    // The pages Google should know about: all of them except the "not found" page.
-    const urls = pages.map((p) => `  <url><loc>${SITE_URL}${p}</loc></url>`).join('\n')
+    // The pages Google should know about: all of them except the "not found" page and the ad
+    // landing page (/play, noindex: it repeats the homepage for visitors coming from the ad).
+    const urls = pages.filter((p) => !NOT_IN_SITEMAP.includes(p)).map((p) => `  <url><loc>${SITE_URL}${p}</loc></url>`).join('\n')
     writeFileSync(
       join('dist', 'sitemap.xml'),
       `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`

@@ -6,6 +6,7 @@ import { ADVENTURES } from '@/data/adventures'
 import { CLASSES, PLAYABLE_CLASSES, RACES } from '@/data/classes'
 import { DISCORD, SITE_NAV, STORE } from '@/data/links'
 import { HOME_STRUCTURED_DATA, usePageMeta } from '@/data/seo'
+import { REVIEWS } from '@/data/reviews'
 import { useHead } from '@unhead/vue'
 import trailer720 from '@/assets/trailer/trailer-720.mp4'
 import trailer480 from '@/assets/trailer/trailer-480.mp4'
@@ -55,12 +56,6 @@ const FEATURES = [
     title: 'Level 1 to 20',
     desc: `Full progression system across ${PLAYABLE_CLASSES} classes. Unlock abilities, grow stronger, shape your legend.`
   }
-]
-
-const REVIEWS = [
-  { stars: 5, text: 'Overall this is great, it has good memory for AI. It feels like my own story. An overall great AI D&D replica for solo RPG.', author: 'Play Store User' },
-  { stars: 5, text: "Amazing game. The AI tracks your decisions well and the storytelling is fun. Really feels like you're living the adventure.", author: 'Play Store User' },
-  { stars: 4, text: 'I really love this app. The game is great fun, the AI tracks your decisions well and the storytelling is engaging and immersive.', author: 'Play Store User' }
 ]
 
 usePageMeta(() => ({
