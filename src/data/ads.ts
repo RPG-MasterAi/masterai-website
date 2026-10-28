@@ -13,8 +13,9 @@
 
 // ── To fill in (Jim sends them once the conversion action and the Apple link exist). ──
 // While AW_ID is empty the tag never loads, wherever the visitor is.
-const AW_ID = '' // e.g. 'AW-123456789'
-const CONVERSION_LABEL = '' // e.g. 'AbCdEfGhIjKlMnOp'
+// Conversion action "Clic pulsante store - sito rpgmaster.ai", created by Jim in Google Ads (2026-10-21).
+const AW_ID = 'AW-16577658336'
+const CONVERSION_LABEL = '1MwKCNvV-qQdEOD76-A9'
 // Campaign link generated in App Store Connect (with `pt=` and `ct=sito_cinematico`). Empty: the
 // iPhone button keeps the normal App Store link.
 const IOS_CAMPAIGN_URL = ''

@@ -2,7 +2,7 @@
 
 **MasterAi S.R.L.S.**, located at Via degli Aceri 77, 00172 Roma, with Tax Identification Number and VAT Number 17291571002, acting as the Data Controller for personal data (hereinafter also referred to as "Data Controller"), in compliance with EU Regulation 2016/679 of April 27, 2016 (General Data Protection Regulation, hereinafter "GDPR") and with Italian Legislative Decree No. 196/2003 (Privacy Code) as amended by Legislative Decree No. 101/2018, hereby provides this privacy notice pursuant to Articles 13 and 14 of the GDPR, regarding the processing of your personal data for the purposes and in the manner set forth below.
 
-**Last updated: August 2026**
+**Last updated: October 2026**
 
 The term "processing of personal data" refers to any operation or set of operations, carried out with or without the aid of automated processes and applied to personal data or sets of personal data, such as collection, recording, organization, structuring, storage, adaptation or alteration, retrieval, consultation, use, disclosure by transmission, dissemination or otherwise making available, alignment or combination, restriction, erasure, or destruction.
 
@@ -241,6 +241,57 @@ Cookies are small data files, typically of letters and numbers, that are placed 
 | **Analytics, Performance and Research** | Help us understand how well our Services are performing and how to improve them. |
 | **Marketing** | Allow us to collect information about your interactions with our marketing activities and measure the performance of our Services and advertising campaigns. |
 
+### Our Website (rpgmaster.ai)
+
+This Section 8 applies both to the MasterAi application and to our website at rpgmaster.ai. On the
+website we use the following technologies.
+
+**Strictly necessary and security cookies.** The website is delivered through Cloudflare, Inc.,
+which may set strictly necessary cookies for security, bot detection and traffic routing (for
+example `__cf_bm`). They are used only to deliver and protect the website and never for advertising.
+
+**Audience measurement without cookies.** We use Cloudflare Web Analytics, which does not use
+cookies, does not store any identifier on your device and does not follow you across websites. It
+processes your IP address and the technical characteristics of your request for the sole purpose of
+producing aggregate statistics about the website, on the basis of our legitimate interest under
+Article 6(1)(f) GDPR.
+
+**Google Ads measurement — visitors in the United States only.** We advertise MasterAi on Google
+platforms with campaigns directed exclusively at the United States. For this purpose, and **only
+when the country of your visit is identified as the United States** by the content delivery network
+that serves the website, we load the Google Ads tag (gtag.js) of Google LLC, 1600 Amphitheatre
+Parkway, Mountain View, California. The tag sets first-party cookies on rpgmaster.ai (for example
+`_gcl_au`) and may set or read Google cookies, for the sole purpose of measuring whether a visit
+that originated from one of our advertisements ended with a click on the "Get it on Google Play" or
+"Download on the App Store" button. We receive aggregate campaign statistics only. Google processes
+these data both on our behalf and, for its own purposes described at
+https://policies.google.com/privacy, as an independent controller. Where Google transfers data
+outside the European Economic Area, the transfer relies on the EU-U.S. Data Privacy Framework and on
+the Standard Contractual Clauses approved by the European Commission under Decision 2021/914. The
+legal basis for this measurement is our legitimate interest in understanding whether our advertising
+works (Article 6(1)(f) GDPR), together with your right to opt out described below.
+
+**Visitors outside the United States.** If the country of your visit is not identified as the United
+States — including every visit identified as coming from the European Economic Area, the United
+Kingdom or Switzerland — the Google Ads tag is **not loaded at all**: no Google advertising cookie
+is written and no advertising request is sent to Google from the website. If the country cannot be
+determined, the tag is not loaded either. This is why the website shows no cookie consent banner:
+the technologies that remain are either strictly necessary or work without cookies, and therefore
+require no consent.
+
+**Your choices, wherever you are.** You can opt out of the Google Ads measurement described above at
+any time by any of the following means: (i) enabling the Global Privacy Control signal in your
+browser or browser extension — when that signal is present we do not load the Google Ads tag (see
+Section 9.3); (ii) using the "Your Privacy Choices" link in the footer of the website; (iii) blocking
+or deleting cookies in your browser settings; or (iv) writing to privacy@rpgmaster.ai. Opting out
+does not limit your use of the website or of the application in any way.
+
+**Campaign parameters in links.** If you reach us from one of our advertisements, the links to the
+Google Play Store and to the Apple App Store may carry campaign parameters (for example
+`utm_source`, `referrer`, `ct`) so that the stores can attribute the installation to that campaign.
+These parameters travel inside the link only: they are not stored on your device, and the store then
+processes them under its own privacy policy.
+
 ### Google AdMob
 
 - **Provider**: Google Ireland Limited
@@ -278,6 +329,11 @@ If you are a California resident, you have rights under the California Consumer 
 
 **We do not sell your personal information** as defined under the CCPA. We use data for advertising via Google AdMob mediation and Meta Audience Network, which under CCPA may be considered "sharing" for cross-context behavioral advertising. California residents may opt-out by emailing **privacy@rpgmaster.ai** with subject line "California Opt-Out".
 
+California residents may also opt out of the sharing described in Section 8 for our website by using
+the **Your Privacy Choices** link in the footer of rpgmaster.ai, or by transmitting a Global Privacy
+Control signal, which we process as a valid opt-out request in a frictionless manner, with no need
+to create an account or to provide any additional information.
+
 To exercise any other right, contact **privacy@rpgmaster.ai**. We will respond within 45 days as required by the CCPA.
 
 ### 9.2 Other U.S. State Privacy Rights
@@ -311,6 +367,24 @@ Several U.S. state laws provide additional protections for "sensitive personal i
 
 Several state laws (particularly California, Connecticut, and Maryland under the Age-Appropriate Design Code) provide enhanced protections for minors. As stated in Section 5, MasterAi is intended for users aged 13 and older and we do not knowingly collect data from children under 13.
 
+<a id="choices"></a>
+## Do Not Sell or Share My Personal Information — Your Privacy Choices
+
+MasterAi does not sell personal information for money. For U.S. visitors, the advertising
+measurement described in Section 8 may qualify as "sharing" for cross-context behavioral advertising
+under California law. You can stop it in any of these ways, at no cost and without creating an
+account:
+
+- **Automatic (recommended)**: enable Global Privacy Control in your browser or in a browser
+  extension. We read that signal on every page and, when it is present, the advertising tag is not
+  loaded at all.
+- **In your browser**: block or delete cookies for rpgmaster.ai.
+- **By email**: write to privacy@rpgmaster.ai with the subject "Opt-Out". We reply within 45 days,
+  as required by California law.
+
+The same choices are available to residents of every other U.S. state and to visitors from any
+country.
+
 ## 10- Data We Collect
 
 ### A. Data Collected Automatically
@@ -318,7 +392,10 @@ Several state laws (particularly California, Connecticut, and Maryland under the
 - Device identification data, operating system, language;
 - Usage data and game session metadata;
 - IP address (for security and geolocation);
-- Crash reports and diagnostic information.
+- Crash reports and diagnostic information;
+- The approximate country of your visit to our website, derived from your IP address by the content
+  delivery network that serves it, used only to decide whether the advertising measurement tag
+  described in Section 8 may be loaded.
 
 ### B. Data You Provide Us
 
@@ -395,4 +472,4 @@ You also have the right to object to this processing under Article 21 GDPR. Such
 
 **Contact for any privacy-related inquiry: privacy@rpgmaster.ai**
 
-**Last updated: August 2026**
+**Last updated: October 2026**

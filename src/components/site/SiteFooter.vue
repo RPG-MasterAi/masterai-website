@@ -33,6 +33,8 @@ import { DISCORD, SITE_NAV, STORE } from '@/data/links'
         <div class="footer-col">
           <RouterLink to="/privacy" class="footer-link">Privacy Policy</RouterLink>
           <RouterLink to="/tos" class="footer-link">Terms of Service</RouterLink>
+          <!-- Opt-out promised by the privacy policy (sections 8 and 9.1, Toby, 2026-10-20); shown to everyone. -->
+          <RouterLink to="/privacy#choices" class="footer-link">Your Privacy Choices</RouterLink>
         </div>
       </div>
     </div>

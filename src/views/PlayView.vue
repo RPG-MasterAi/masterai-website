@@ -166,6 +166,7 @@ onMounted(() => {
       <nav class="foot-legal">
         <RouterLink to="/privacy">Privacy Policy</RouterLink>
         <RouterLink to="/tos">Terms of Service</RouterLink>
+        <RouterLink to="/privacy#choices">Your Privacy Choices</RouterLink>
         <RouterLink to="/support">Support</RouterLink>
       </nav>
       <!-- Company details required by Italian law; same wording as SiteFooter. -->
