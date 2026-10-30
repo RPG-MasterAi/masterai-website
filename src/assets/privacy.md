@@ -2,7 +2,7 @@
 
 **MasterAi S.R.L.S.**, located at Via degli Aceri 77, 00172 Roma, with Tax Identification Number and VAT Number 17291571002, acting as the Data Controller for personal data (hereinafter also referred to as "Data Controller"), in compliance with EU Regulation 2016/679 of April 27, 2016 (General Data Protection Regulation, hereinafter "GDPR") and with Italian Legislative Decree No. 196/2003 (Privacy Code) as amended by Legislative Decree No. 101/2018, hereby provides this privacy notice pursuant to Articles 13 and 14 of the GDPR, regarding the processing of your personal data for the purposes and in the manner set forth below.
 
-**Last updated: October 2026**
+**Last updated: November 2026**
 
 The term "processing of personal data" refers to any operation or set of operations, carried out with or without the aid of automated processes and applied to personal data or sets of personal data, such as collection, recording, organization, structuring, storage, adaptation or alteration, retrieval, consultation, use, disclosure by transmission, dissemination or otherwise making available, alignment or combination, restriction, erasure, or destruction.
 
@@ -34,6 +34,8 @@ Transfers of data to AI providers located outside the European Economic Area are
 - **1.4 Fraud prevention purposes**
   - Limited categories of pseudonymized data (cryptographic hash of the email address used at the time of account deletion) are processed to prevent abuse of the welcome bonus system, where the same individual could otherwise repeatedly create and delete accounts to obtain the new-user welcome tokens multiple times. See Section 13 below for full details.
 
+- **1.5 Community gazette.** With your consent, publication of your adventure story, interview answers, images, character name and Discord username in The Realm Crier. See Section 14.
+
 ### Legal Basis
 
 The processing of personal data for the purposes set out in points 1.1 and 1.2 above is based on:
@@ -43,6 +45,8 @@ The processing of personal data for the purposes set out in points 1.1 and 1.2 a
 The processing of personal data for the purposes referred to in point 1.3 above (direct marketing of similar products to existing customers) is based on the legitimate interest of the Data Controller pursuant to **Article 6, paragraph 1, letter (f) of the GDPR**, in conjunction with **Article 130, paragraph 4, of the Italian Privacy Code (D.Lgs. 196/2003, as amended)** which permits soft opt-in for direct marketing of products similar to those already purchased. The data subject retains the right to object to such processing at any time, easily and free of charge.
 
 The processing of pseudonymized data for fraud prevention purposes referred to in point 1.4 is based on the **legitimate interest of the Data Controller pursuant to Article 6, paragraph 1, letter (f) of the GDPR**, with the legitimate interest being the protection of the welcome bonus system from systematic abuse.
+
+The processing for the purpose referred to in point 1.5 is based on your consent pursuant to **Article 6, paragraph 1, letter (a) of the GDPR**, which you may withdraw at any time without affecting the lawfulness of processing based on consent before its withdrawal.
 
 ## 2- Communication and Dissemination of Personal Data for the Pursuit of Primary Processing Purposes
 
@@ -57,7 +61,8 @@ Pursuant to **Article 13, paragraph 1, letter (e) of the GDPR**, the following c
 - Professionals and consultants of the Data Controller;
 - Third-party generative AI providers, who process user prompts to generate game content;
 - Third-party image generation providers, who process automatically derived prompts to generate in-game illustrations;
-- Cloud infrastructure and content delivery providers for data storage, service operation, and security.
+- Cloud infrastructure and content delivery providers for data storage, service operation, and security;
+- The public, limited to the content you have agreed to publish in The Realm Crier (Section 14).
 
 Furthermore, for the pursuit of the purposes indicated in point 1, the data may be communicated to any other third party when the communication is mandatory by law or contract.
 
@@ -73,7 +78,8 @@ In compliance with the principles of lawfulness, purpose limitation, and data mi
 
 - For the purposes referred to in points 1.1 and 1.2 above (contract performance, legal obligations): 10 years from the termination of the contractual relationship, in compliance with Italian civil and tax record-keeping obligations (Article 2220 of the Italian Civil Code);
 - For the purposes referred to in point 1.3 above (direct marketing): **24 (twenty-four) months from the last interaction with the data subject**, in compliance with the guidelines of the Italian Data Protection Authority (Garante per la protezione dei dati personali, Provision of 24 February 2005 and subsequent confirmations, most recently in 2024). The retention period may be terminated earlier upon the data subject's objection;
-- For the purposes referred to in point 1.4 (fraud prevention): pseudonymized data are retained for a maximum of **12 (twelve) months** from the date of account deletion, after which they are automatically and irreversibly removed.
+- For the purposes referred to in point 1.4 (fraud prevention): pseudonymized data are retained for a maximum of **12 (twelve) months** from the date of account deletion, after which they are automatically and irreversibly removed;
+- For the purpose referred to in point 1.5 (community gazette): until you withdraw your consent; interview contact emails are deleted within 12 months of the last issue in which you appear.
 
 ## 3- Transfer of Personal Data
 
@@ -468,8 +474,47 @@ You can request the early deletion of your fraud prevention hash (before the sta
 
 You also have the right to object to this processing under Article 21 GDPR. Such objections will be evaluated in accordance with the same balancing-of-interests test.
 
+<a id="realm-crier"></a>
+## 14- The Realm Crier (Community Gazette)
+
+MasterAi publishes *The Realm Crier*, a community gazette that tells the adventures of players' characters.
+It is published on our website (rpgmaster.ai), on our Discord server and on our social media pages.
+
+**What we may publish.** Only with your permission: the story of your adventure as you told it (for
+example in the #share-your-adventure channel of our Discord server or in an interview form), your answers
+to the interview, screenshots and images you shared with us, your character's name, and your Discord
+username in small print. Illustrations and other content generated by the Services may also be published,
+as provided in our Terms of Use (Section 3(e) and 3(f)). We do not publish your real name, email address,
+or any other contact details, and we remove personal information visible in screenshots before
+publication.
+
+**How we ask.** Posting in our Discord server does not, by itself, mean that your story will be published.
+Before we publish a story we ask the player directly, and we publish only if the player gives explicit
+permission (for example through the permission box of our interview form). If we do not receive
+permission, the story is not published.
+
+**Legal basis.** Your consent, pursuant to **Article 6, paragraph 1, letter (a) of the GDPR**. Consent is
+optional: refusing it has no effect on your use of MasterAi or of our Discord server.
+
+**Minors.** We publish a story only if the player confirms that they are at least 14 years old (the age
+of digital consent in Italy) or that a parent or guardian agrees.
+
+**Withdrawing your permission.** You can withdraw your permission at any time by writing to
+**privacy@rpgmaster.ai** or to a moderator on our Discord server. We will remove your content, your
+character's name and your username from the online versions of The Realm Crier that we control within
+**14 days**. Withdrawal does not affect publication that took place before it, and we cannot recall copies
+already shared or saved by others.
+
+**How long we keep it.** Published issues remain in our online archive until you withdraw your permission
+or until we remove the issue. The emails collected by the interview forms are used only to contact you
+about the interview and are deleted within 12 months of the last issue in which you appear.
+
+**Who processes the data.** Interview forms are hosted on Google Forms (Google Workspace), and stories are
+collected from Discord (Discord Inc.), which act under their own privacy policies:
+https://policies.google.com/privacy and https://discord.com/privacy
+
 ---
 
 **Contact for any privacy-related inquiry: privacy@rpgmaster.ai**
 
-**Last updated: October 2026**
+**Last updated: November 2026**
