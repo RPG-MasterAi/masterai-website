@@ -123,9 +123,9 @@ export const ADVENTURES: Adventure[] = [
   {
     slug: 'oak-valley-terror',
     title: 'The Oak Valley Terror',
-    // Rewritten on 2026-10-31 (Marco via Toby): the old text retold the opening of a famous TV series
-    // (the basement game, the mom calling everyone home, the ride back). Keep it our own: no scene from it.
-    tagline: 'A small town in the 80s, a handful of friends, and fears that start to take shape.',
+    // Rewritten on 2026-10-31 (Marco via Toby): the old text retold the opening of a famous TV series.
+    // Then made generic on Marco's request: only the genre, no places, no period details, no scenes.
+    tagline: 'A quiet small town, a handful of friends, and fears that start to take shape.',
     card: oakCard,
     hero: oakHero,
     heroAlt: 'Four kids stop at night in front of a glowing tear in the air at the edge of the woods',
@@ -133,14 +133,7 @@ export const ADVENTURES: Adventure[] = [
       {
         heading: 'The world',
         paragraphs: [
-          'Oak Valley, Oregon, in the 1980s: a quiet town with a high school, a brand-new mall, and an energy research institute that nobody in town really talks about. You are a kid, and your world is school, your friends and streets you know by heart.',
-          'Somewhere beyond it lies a parallel plane where the deepest fears come to life. And something in Oak Valley is starting to let them through.'
-        ]
-      },
-      {
-        heading: 'How it starts',
-        paragraphs: [
-          'It begins on an ordinary day in Oak Valley, until something happens that no adult can explain. From that moment the town stops being quiet, and you and your friends are the only ones who know.'
+          'A quiet small town where something is wrong, and the deepest fears are starting to come to life. You and your friends are the only ones who notice, and the only ones who can find out why.'
         ]
       },
       {
@@ -150,7 +143,7 @@ export const ADVENTURES: Adventure[] = [
         ]
       }
     ],
-    bestFor: 'Fans of 80s nostalgia, small-town horror and coming-of-age stories, where a handful of friends is the only hope.'
+    bestFor: 'Fans of small-town horror, mysteries and coming-of-age stories, where a handful of friends is the only hope.'
   },
   {
     slug: 'reichs-dragons',
