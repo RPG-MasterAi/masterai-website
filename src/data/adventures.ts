@@ -123,31 +123,34 @@ export const ADVENTURES: Adventure[] = [
   {
     slug: 'oak-valley-terror',
     title: 'The Oak Valley Terror',
-    tagline: '1983. A group of friends and an RPG night that becomes all too real.',
+    // Rewritten on 2026-10-31 (Marco via Toby): the old text retold the opening of a famous TV series
+    // (the basement game, the mom calling everyone home, the ride back). Keep it our own: no scene from it.
+    tagline: 'A small town in the 80s, a handful of friends, and fears that start to take shape.',
     card: oakCard,
     hero: oakHero,
-    heroAlt: 'Four kids on bikes at night stop in front of a glowing tear in the air at the edge of the woods',
+    heroAlt: 'Four kids stop at night in front of a glowing tear in the air at the edge of the woods',
     sections: [
       {
         heading: 'The world',
         paragraphs: [
-          'Oak Valley, Oregon: a quiet town with a high school, a brand-new mall, and an energy research institute on the edge of the woods that nobody really talks about. It is 1983, and you are a kid. Your weekend plans are bikes, arcade games, and the DnD campaign in your friend\'s basement.'
+          'Oak Valley, Oregon, in the 1980s: a quiet town with a high school, a brand-new mall, and an energy research institute that nobody in town really talks about. You are a kid, and your world is school, your friends and streets you know by heart.',
+          'Somewhere beyond it lies a parallel plane where the deepest fears come to life. And something in Oak Valley is starting to let them through.'
         ]
       },
       {
         heading: 'How it starts',
         paragraphs: [
-          'The game begins in the middle of your tabletop session, with the dice still rolling. Then it gets late, a mom calls everyone home, and the friends ride back through the dark on their bikes. That is when Oak Valley stops being a quiet town.'
+          'It begins on an ordinary day in Oak Valley, until something happens that no adult can explain. From that moment the town stops being quiet, and you and your friends are the only ones who know.'
         ]
       },
       {
         heading: 'How you play',
         paragraphs: [
-          'You are a kid, not a hero. Your character sheet is the DnD character you play at the table, and the adults won\'t believe a word you say. You earn experience by investigating, finding clues and reaching the turning points of the story.'
+          'You are a kid, not a hero, and the adults won\'t believe a word you say. You earn experience by investigating, finding clues and reaching the turning points of the story.'
         ]
       }
     ],
-    bestFor: 'Fans of 80s nostalgia, suburban horror and coming-of-age stories, where a group of kids on bikes is the only hope.'
+    bestFor: 'Fans of 80s nostalgia, small-town horror and coming-of-age stories, where a handful of friends is the only hope.'
   },
   {
     slug: 'reichs-dragons',
