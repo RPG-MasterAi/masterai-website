@@ -3,7 +3,7 @@ import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { useHead } from '@unhead/vue'
 import { RouterLink } from 'vue-router'
 import { STORE } from '@/data/links'
-import { EARLY_CLICK, adsSettled } from '@/data/ads'
+import { adsSettled } from '@/data/ads'
 import { REVIEWS } from '@/data/reviews'
 import { usePageMeta } from '@/data/seo'
 import trailer720 from '@/assets/trailer/trailer-720-audio.mp4'
@@ -111,9 +111,9 @@ usePageMeta(() => ({
 }))
 useHead({
   script: [
-    { innerHTML: MARK_DEVICE, 'data-cfasync': 'false', tagPriority: 'critical' },
-    // Notes a store click made before the site's JavaScript runs, so it can still be counted (ads.ts).
-    { innerHTML: EARLY_CLICK, 'data-cfasync': 'false', tagPriority: 'critical' }
+    { innerHTML: MARK_DEVICE, 'data-cfasync': 'false', tagPriority: 'critical' }
+    // The early script for the tag and for store clicks (ads.ts, EARLY_SCRIPT) is written into the
+    // pre-rendered HTML by vite.config.ts, before the stylesheets, so that it does not wait for them.
   ]
 })
 

@@ -58,34 +58,67 @@ const campaignHref = (href: string, platform: Platform) => {
   return IOS_CAMPAIGN_URL || null
 }
 
-// ── Clicks made before the site's JavaScript is running (/play only) ──
+// ── The first seconds of /play: the tag question and early clicks, before the site's JavaScript ──
 // On a slow phone the pre-rendered store buttons are on screen a second or more before the page is
-// running, and a click in that time was never counted, nor did the Play link get its referrer
-// (analysis 09/11). This small script goes in the <head> of /play (PlayView.vue, with
-// `data-cfasync="false"` like MARK_DEVICE). It sends nothing and stores nothing: it only notes in a
-// variable of the page which store was clicked (not with GPC), and gives the link the same campaign
-// address as onClick below. startAds then takes over: it reads the click and switches the script off.
+// running (analysis 09/11). Waiting for the site's script to read the country and only then fetch
+// gtag.js put the conversion of an early click at about 3 s on Slow 4G (Marco, 09/11: "less than
+// 3 seconds?"). So this small script, written into the <head> of /play by vite.config.ts before the
+// stylesheets (it runs as soon as it is read, not after the CSS), with `data-cfasync="false"` so that
+// Rocket Loader leaves it alone, does what startAds would do, with the SAME rules, only sooner:
+// - GPC (or no AW_ID): nothing at all, no request of any kind, as in startAds;
+// - otherwise the country from /cdn-cgi/trace (same site): only for the US it loads the tag exactly
+//   like loadTag below (same dataLayer, config and gtag.js address). Anywhere else, or if the country
+//   cannot be read, nothing is ever asked of Google;
+// - a store click: the Play link gets the campaign referrer (visitors from the ad), as in onClick; the
+//   conversion goes to gtag at once if the tag is in (gtag queues it until gtag.js arrives), is kept
+//   while the country is being read and sent when the answer is "US", and is dropped otherwise.
+// It stores nothing (no cookie, no storage). startAds then takes over: it switches the click listener
+// off, takes a click still waiting, and waits for this script's answer instead of asking again; the
+// tag is never loaded twice and a click is never sent by both.
 //
 // One more thing it must do. A link followed while the page is still loading makes the browser stop
 // loading it: the site's script, already fetched but not yet run, is thrown away. When the store then
-// opens in its own app (or answers with no page), the tab stays on a page that never starts: no tag,
-// no sound button (seen in Chrome, 09/11). So, one second after such a click, if startAds has not
+// opens in its own app (or answers with no page), the tab stays on a page that never starts: no
+// sound button (seen in Chrome, 09/11). So, one second after such a click, if startAds has not
 // taken over, the script adds the site's own main script again. The browser runs a module only once
 // per page, so if the site was in fact already starting nothing happens twice.
 // Written here so that it uses the same constants as the rest of this file.
 const EARLY_KEY = '__masteraiStoreClick'
-type EarlyClick = { p: Platform | ''; off: () => void }
+type EarlyClick = {
+  // A click waiting for the country (cleared once taken or sent).
+  p: Platform | ''
+  // Switches the early click listener off.
+  off: () => void
+  // The answer: true = US visitor without GPC, tag loaded by this script.
+  d?: Promise<boolean>
+  // gtag.js has loaded or failed (only once the tag is loaded).
+  g?: Promise<void>
+}
 
-export const EARLY_CLICK = `(function(){var w=window,d=document,K=${JSON.stringify(EARLY_KEY)};if(w[K])return;` +
-  `var R=${JSON.stringify(ANDROID_REFERRER)},I=${JSON.stringify(IOS_CAMPAIGN_URL)},G=navigator.globalPrivacyControl===true,` +
-  `A=new URLSearchParams(location.search).get('utm_source')==='google',o,k=0;` +
+export const EARLY_SCRIPT = `(function(){var w=window,d=document,K=${JSON.stringify(EARLY_KEY)};if(w[K])return;` +
+  `var R=${JSON.stringify(ANDROID_REFERRER)},I=${JSON.stringify(IOS_CAMPAIGN_URL)},` +
+  `W=${JSON.stringify(AW_ID)},L=${JSON.stringify(CONVERSION_LABEL)},C=${JSON.stringify(AD_COUNTRIES)},` +
+  `G=navigator.globalPrivacyControl===true,` +
+  `A=new URLSearchParams(location.search).get('utm_source')==='google',o,k=0,t=0,y,z;` +
+  // the conversion, exactly as sendConversion
+  `function c(p){w.gtag('event','conversion',{send_to:W+'/'+L,platform:p,transport_type:'beacon'})}` +
+  // the tag, exactly as loadTag
+  `function g(){w.dataLayer=w.dataLayer||[];w.gtag=function(){w.dataLayer.push(arguments)};` +
+  `w.gtag('js',new Date());w.gtag('config',W);var s=d.createElement('script');s.async=true;` +
+  `s.src='https://www.googletagmanager.com/gtag/js?id='+W;s.onload=s.onerror=function(){z()};d.head.appendChild(s)}` +
+  // the answer: t = 1 tag, 2 no tag
+  `function e(u){if(u){g();if(o.p&&L)c(o.p)}else z();o.p='';t=u?1:2;y(u)}` +
   `function r(){if(w[K]!==o)return;var m=d.querySelector('script[type="module"][src]');if(!m)return;` +
   `var s=d.createElement('script');s.type='module';s.crossOrigin='anonymous';s.src=m.src;d.head.appendChild(s)}` +
-  `function h(e){var t=e.target,a=t&&t.closest&&t.closest('a');if(!a)return;var s=a.href,` +
+  `function h(v){var x=v.target,a=x&&x.closest&&x.closest('a');if(!a)return;var s=a.href,` +
   `p=s.indexOf('https://play.google.com/')===0?'android':s.indexOf('https://apps.apple.com/')===0?'iphone':'';if(!p)return;` +
   `if(A){if(p==='android'){var u=new URL(s);u.searchParams.set('referrer',R);a.href=u.toString()}else if(I)a.href=I}` +
-  `if(!G)o.p=p;if(!k){k=1;setTimeout(r,1000)}}` +
-  `o={p:'',off:function(){d.removeEventListener('click',h,true)}};w[K]=o;d.addEventListener('click',h,true)})()`
+  `if(L){if(t===1)c(p);else if(!t)o.p=p}if(!k){k=1;setTimeout(r,1000)}}` +
+  `o={p:'',off:function(){d.removeEventListener('click',h,true)},` +
+  `d:new Promise(function(f){y=f}),g:new Promise(function(f){z=f})};w[K]=o;d.addEventListener('click',h,true);` +
+  `if(!W||G)e(false);else fetch('/cdn-cgi/trace',{cache:'no-store'})` +
+  `.then(function(q){return q.ok?q.text():''}).then(function(x){var m=x.match(/^loc=([A-Z]{2})$/m);` +
+  `return!!m&&C.indexOf(m[1])>=0},function(){return false}).then(e)})()`
 
 const visitorCountry = async () => {
   try {
@@ -125,9 +158,15 @@ const sendConversion = (platform: Platform) => {
 
 // The tag question is answered: `withTag` only for a US visitor without GPC. A click kept while
 // waiting is sent now if the tag is in (queued by gtag until gtag.js arrives), otherwise forgotten.
-const decide = (withTag: boolean) => {
+// `early`: the early script of /play has already loaded the tag, so it is not loaded again.
+const decide = (withTag: boolean, early?: EarlyClick) => {
   if (withTag) {
-    loadTag()
+    if (early?.g) {
+      tagReady = true
+      early.g.then(settle)
+    } else {
+      loadTag()
+    }
     if (pending && CONVERSION_LABEL) sendConversion(pending)
   } else {
     settle()
@@ -161,17 +200,26 @@ export const startAds = async () => {
   if (started) return
   started = true
   fromAd = new URLSearchParams(window.location.search).get('utm_source') === 'google'
-  // A click already noted by the early script of /play (EARLY_CLICK) becomes the pending click.
-  // The marker left behind keeps that script from starting again (e.g. /play opened from another page).
+  // A click still waiting in the early script of /play (EARLY_SCRIPT) becomes the pending click here,
+  // and is cleared there, so only one of the two can send it. A click the early script has already
+  // sent is no longer there. The marker left behind keeps that script from starting again (e.g. /play
+  // opened from another page).
   const w = window as unknown as Record<string, EarlyClick | undefined>
   const early = w[EARLY_KEY]
   w[EARLY_KEY] = { p: '', off: () => {} }
   if (early) {
     early.off()
     if (early.p) pending = early.p
+    early.p = ''
   }
   // Capture phase: runs before the link is followed, whatever component the button is in.
   document.addEventListener('click', onClick, true)
+  // /play: the early script has already asked (or is asking) the same question with the same rules;
+  // its answer is used, the country is not read twice and the tag is not loaded twice.
+  if (early?.d) {
+    decide(await early.d, early)
+    return
+  }
   // The published privacy policy (section 9.3) promises to honour the Global Privacy Control signal:
   // a browser that sends it never gets the tag (Toby, 2026-10-21).
   if (!AW_ID || (navigator as Navigator & { globalPrivacyControl?: boolean }).globalPrivacyControl === true) {

@@ -5,6 +5,7 @@ import { join } from 'node:path'
 import { defineConfig } from 'vite'
 import type { ViteSSGOptions } from 'vite-ssg'
 import vue from '@vitejs/plugin-vue'
+import { EARLY_SCRIPT } from './src/data/ads'
 
 // Pre-rendering (vite-ssg, 2026-10-16): every page is written as its own HTML file, flat
 // (`classes.html`, `adventures/god-king.html`), which Cloudflare Pages serves at `/classes`
@@ -21,10 +22,18 @@ const bodyClass = (route: string) =>
 // counted (analysis 09/11). `data-cfasync="false"`, written before `src` as Cloudflare documents,
 // tells Rocket Loader to leave the script alone. Only on /play: the other pages keep exactly the
 // HTML they had (Marco, 09/11: no Cloudflare changes, fix it in the site, keep the rest as it is).
+// On the same page, the early script of src/data/ads.ts (EARLY_SCRIPT: the Google tag for US visitors
+// and store clicks, before the site's JavaScript) goes just before the main script, that is before
+// the stylesheets: a script placed after a stylesheet waits for it to load (Marco, 09/11: the
+// conversion of an early click came about 3 s after opening the page on a slow phone).
 const NO_ROCKET_LOADER = ['/play']
 const withoutRocketLoader = (html: string) => {
-  const out = html.replace('<script type="module" crossorigin', '<script data-cfasync="false" type="module" crossorigin')
+  const out = html.replace(
+    '<script type="module" crossorigin',
+    `<script data-cfasync="false">${EARLY_SCRIPT}</script>\n    <script data-cfasync="false" type="module" crossorigin`
+  )
   if (out === html) throw new Error('vite.config.ts: main <script type="module"> not found, data-cfasync not added')
+  if (EARLY_SCRIPT.includes('</')) throw new Error('vite.config.ts: EARLY_SCRIPT must not contain "</"')
   return out
 }
 
