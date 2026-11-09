@@ -18,6 +18,7 @@ import { createPinia } from 'pinia'
 
 import App from './App.vue'
 import { routes, scrollBehavior } from './router'
+import { startAds } from './data/ads'
 
 // vite-ssg builds every page as real HTML (what Google and link previews read), then the
 // browser takes over as before (2026-10-16).
@@ -26,5 +27,8 @@ export const createApp = ViteSSG(
   { routes, scrollBehavior, base: import.meta.env.BASE_URL },
   ({ app }) => {
     app.use(createPinia())
+    // Google Ads measurement, US visitors only (src/data/ads.ts). Started here, in the browser,
+    // before the page is hydrated: on a slow phone that is a second earlier than App's onMounted.
+    if (!import.meta.env.SSR) startAds()
   }
 )

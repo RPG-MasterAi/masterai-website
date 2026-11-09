@@ -3,6 +3,7 @@ import { onMounted, ref } from 'vue'
 import { useHead } from '@unhead/vue'
 import { RouterLink } from 'vue-router'
 import { STORE } from '@/data/links'
+import { EARLY_CLICK } from '@/data/ads'
 import { REVIEWS } from '@/data/reviews'
 import { usePageMeta } from '@/data/seo'
 import trailer720 from '@/assets/trailer/trailer-720-audio.mp4'
@@ -57,7 +58,11 @@ usePageMeta(() => ({
   noindex: true
 }))
 useHead({
-  script: [{ innerHTML: MARK_DEVICE, 'data-cfasync': 'false', tagPriority: 'critical' }]
+  script: [
+    { innerHTML: MARK_DEVICE, 'data-cfasync': 'false', tagPriority: 'critical' },
+    // Notes a store click made before the site's JavaScript runs, so it can still be counted (ads.ts).
+    { innerHTML: EARLY_CLICK, 'data-cfasync': 'false', tagPriority: 'critical' }
+  ]
 })
 
 onMounted(() => {
