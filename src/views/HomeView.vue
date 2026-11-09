@@ -319,13 +319,110 @@ body.home-full #app {
   padding: 0;
   display: block;
 }
+
+/* Until Crimson Text arrives the text is drawn in a system font, and a wider one: on a phone the tagline
+   took one line more, and when the font came in everything below it (#features first) jumped up by that
+   line (Cloudflare, CLS 0.127, 09/11). These are the same system fonts, only scaled so that a line holds
+   as many words as in Crimson Text, with its height: the line breaks no longer change when the font
+   arrives. Once Crimson Text is in, these are never used. Measured in Chrome on the homepage's own
+   paragraphs (average width per character: Crimson Text 0.388 em, Georgia 0.437, Noto Serif 0.472,
+   Times New Roman 0.401; Crimson Text ascent 0.95, descent 0.35). Georgia is the iPhone's and the
+   computer's, Noto Serif Android's. */
+@font-face {
+  font-family: 'Crimson Text Georgia';
+  src: local('Georgia');
+  size-adjust: 88.76%;
+  ascent-override: 107.03%;
+  descent-override: 39.43%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Crimson Text Noto';
+  src: local('Noto Serif'), local('NotoSerif-Regular');
+  size-adjust: 82.26%;
+  ascent-override: 115.49%;
+  descent-override: 42.55%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Crimson Text Times';
+  src: local('Times New Roman'), local('TimesNewRomanPSMT');
+  size-adjust: 96.73%;
+  ascent-override: 98.21%;
+  descent-override: 36.18%;
+  line-gap-override: 0%;
+}
+
+/* The same for the titles, stats and labels in Cinzel and Cinzel Decorative, whose fallback was the
+   plain `serif` (Times New Roman, Noto Serif on Android), narrower and lower: the stats and the section
+   headings changed height when the fonts arrived. Measured the same way on the homepage's own titles and
+   labels, in capitals where the page shows them in capitals (width per character: Cinzel 0.579 em
+   regular, 0.603 bold; Cinzel Decorative bold 0.604; Times New Roman 0.494 / 0.521 / 0.477; Noto Serif
+   0.538 / 0.570 / 0.534; Cinzel ascent 0.98, descent 0.37). A regular and a bold face each, so that the
+   browser does not have to make up a bold. */
+@font-face {
+  font-family: 'Cinzel Times';
+  src: local('Times New Roman'), local('TimesNewRomanPSMT');
+  font-weight: 400;
+  size-adjust: 117.2%;
+  ascent-override: 83.62%;
+  descent-override: 31.57%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Cinzel Times';
+  src: local('Times New Roman Bold'), local('TimesNewRomanPS-BoldMT');
+  font-weight: 700;
+  size-adjust: 115.6%;
+  ascent-override: 84.78%;
+  descent-override: 32.01%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Cinzel Noto';
+  src: local('Noto Serif'), local('NotoSerif-Regular');
+  font-weight: 400;
+  size-adjust: 107.5%;
+  ascent-override: 91.16%;
+  descent-override: 34.42%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Cinzel Noto';
+  src: local('Noto Serif Bold'), local('NotoSerif-Bold');
+  font-weight: 700;
+  size-adjust: 105.9%;
+  ascent-override: 92.54%;
+  descent-override: 34.94%;
+  line-gap-override: 0%;
+}
+/* Cinzel Decorative is used bold only on this page (700 and 900). */
+@font-face {
+  font-family: 'Cinzel Decorative Times';
+  src: local('Times New Roman Bold'), local('TimesNewRomanPS-BoldMT');
+  font-weight: 700;
+  size-adjust: 126.6%;
+  ascent-override: 77.41%;
+  descent-override: 29.23%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Cinzel Decorative Noto';
+  src: local('Noto Serif Bold'), local('NotoSerif-Bold');
+  font-weight: 700;
+  size-adjust: 112.9%;
+  ascent-override: 86.8%;
+  descent-override: 32.77%;
+  line-gap-override: 0%;
+}
 </style>
 
 <style scoped>
 .home {
   background: #0a0a0f;
   color: #e8e0d0;
-  font-family: 'Crimson Text', Georgia, serif;
+  /* The three fallbacks are the font faces at the top of this file (09/11). */
+  font-family: 'Crimson Text', 'Crimson Text Georgia', 'Crimson Text Noto', 'Crimson Text Times', Georgia, serif;
   font-size: 16px;
   line-height: normal;
   overflow-x: hidden;
@@ -356,11 +453,11 @@ body.home-full #app {
 .nav-bar.hidden { background: transparent; }
 .brand { display: flex; align-items: center; gap: 12px; }
 .brand-master {
-  font-family: 'Cinzel Decorative', serif; font-size: 20px; font-weight: 900;
+  font-family: 'Cinzel Decorative', 'Cinzel Decorative Times', 'Cinzel Decorative Noto', serif; font-size: 20px; font-weight: 900;
   color: #c9a84c; letter-spacing: 2px;
 }
 .brand-ai {
-  font-family: 'Cinzel', serif; font-size: 16px; font-weight: 400;
+  font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 16px; font-weight: 400;
   color: #8b2500; letter-spacing: 1px;
 }
 
@@ -386,12 +483,12 @@ body.home-full #app {
   z-index: 3; text-align: center; padding: 0 20px;
 }
 .hero-title {
-  font-family: 'Cinzel Decorative', serif; font-size: clamp(36px, 6vw, 72px); font-weight: 900;
+  font-family: 'Cinzel Decorative', 'Cinzel Decorative Times', 'Cinzel Decorative Noto', serif; font-size: clamp(36px, 6vw, 72px); font-weight: 900;
   color: #ffffff; text-shadow: 0 2px 40px rgba(0, 0, 0, 0.8), 0 0 80px rgba(201, 168, 76, 0.2);
   letter-spacing: 4px; margin-bottom: 16px; line-height: 1.1;
 }
 .hero-subtitle {
-  font-family: 'Cinzel', serif; font-size: clamp(14px, 2vw, 22px); color: rgba(232, 224, 208, 0.8);
+  font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: clamp(14px, 2vw, 22px); color: rgba(232, 224, 208, 0.8);
   letter-spacing: 6px; text-transform: uppercase; margin-bottom: 40px;
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.9);
 }
@@ -409,7 +506,7 @@ body.home-full #app {
   display: inline-flex; align-items: center; gap: 12px;
   padding: 16px 40px;
   background: linear-gradient(135deg, #c9a84c 0%, #a8872a 100%);
-  color: #0a0a0f; font-family: 'Cinzel', serif; font-weight: 700;
+  color: #0a0a0f; font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-weight: 700;
   font-size: 14px; letter-spacing: 3px; text-transform: uppercase;
   border: none; cursor: pointer;
   position: relative; overflow: hidden; transition: all 0.4s;
@@ -427,7 +524,7 @@ body.home-full #app {
 .cta-btn-outline {
   display: inline-flex; align-items: center; gap: 10px;
   padding: 14px 32px; background: transparent; color: #c9a84c;
-  font-family: 'Cinzel', serif; font-weight: 600; font-size: 13px;
+  font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-weight: 600; font-size: 13px;
   letter-spacing: 2px; text-transform: uppercase;
   border: 1px solid rgba(201, 168, 76, 0.5); cursor: pointer; transition: all 0.3s;
 }
@@ -455,10 +552,10 @@ body.home-full #app {
 .ambient-glow { position: absolute; border-radius: 50%; filter: blur(120px); opacity: 0.15; pointer-events: none; }
 .section-head { text-align: center; margin-bottom: 60px; }
 .eyebrow {
-  font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 4px; color: #c9a84c;
+  font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 12px; letter-spacing: 4px; color: #c9a84c;
   text-transform: uppercase; margin-bottom: 12px;
 }
-.section-title { font-family: 'Cinzel', serif; font-size: clamp(28px, 3.5vw, 40px); font-weight: 700; }
+.section-title { font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: clamp(28px, 3.5vw, 40px); font-weight: 700; }
 
 /* ── stats ── */
 .stats {
@@ -474,11 +571,11 @@ body.home-full #app {
 }
 .stat-item:last-child::after { display: none; }
 .stat-value {
-  font-family: 'Cinzel Decorative', serif; font-size: clamp(28px, 3.5vw, 42px); font-weight: 900;
+  font-family: 'Cinzel Decorative', 'Cinzel Decorative Times', 'Cinzel Decorative Noto', serif; font-size: clamp(28px, 3.5vw, 42px); font-weight: 900;
   color: #c9a84c; line-height: 1; margin-bottom: 6px;
 }
 .stat-label {
-  font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 3px;
+  font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 11px; letter-spacing: 3px;
   text-transform: uppercase; color: #6b6b6b;
 }
 
@@ -488,7 +585,7 @@ body.home-full #app {
 .glow-red { width: 400px; height: 400px; background: #8b2500; bottom: 10%; right: -5%; }
 .tagline-inner { max-width: 800px; margin: 0 auto; position: relative; z-index: 1; }
 .tagline-title {
-  font-family: 'Cinzel Decorative', serif; font-size: clamp(24px, 4vw, 48px); font-weight: 700;
+  font-family: 'Cinzel Decorative', 'Cinzel Decorative Times', 'Cinzel Decorative Noto', serif; font-size: clamp(24px, 4vw, 48px); font-weight: 700;
   color: #e8e0d0; line-height: 1.3; margin-bottom: 24px;
 }
 .tagline-text { font-size: 18px; line-height: 1.8; color: #a89070; max-width: 600px; margin: 0 auto; }
@@ -510,7 +607,7 @@ body.home-full #app {
 .feature-card:hover::before { opacity: 1; }
 .feature-icon { font-size: 40px; margin-bottom: 20px; }
 .feature-title {
-  font-family: 'Cinzel', serif; font-size: 18px; font-weight: 700; color: #e8e0d0;
+  font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 18px; font-weight: 700; color: #e8e0d0;
   margin-bottom: 12px; letter-spacing: 1px;
 }
 .feature-desc { font-size: 15px; line-height: 1.7; color: #8a7e6e; }
@@ -524,7 +621,7 @@ body.home-full #app {
 }
 .review-stars { color: #c9a84c; font-size: 16px; margin-bottom: 12px; letter-spacing: 2px; }
 .review-text { font-size: 14px; line-height: 1.7; color: #a89070; margin-bottom: 16px; font-style: italic; }
-.review-author { font-size: 12px; color: #4a4a4a; font-family: 'Cinzel', serif; letter-spacing: 1px; }
+.review-author { font-size: 12px; color: #4a4a4a; font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; letter-spacing: 1px; }
 
 /* ── final CTA ── */
 .anchor { display: block; position: relative; top: -80px; }
@@ -535,7 +632,7 @@ body.home-full #app {
 .glow-center { width: 600px; height: 600px; background: #c9a84c; top: 10%; left: 30%; }
 .final-inner { position: relative; z-index: 1; }
 .final-title {
-  font-family: 'Cinzel Decorative', serif; font-size: clamp(28px, 4.5vw, 52px); font-weight: 900;
+  font-family: 'Cinzel Decorative', 'Cinzel Decorative Times', 'Cinzel Decorative Noto', serif; font-size: clamp(28px, 4.5vw, 52px); font-weight: 900;
   margin-bottom: 16px; line-height: 1.2;
 }
 .final-text { font-size: 18px; color: #8a7e6e; max-width: 500px; margin: 0 auto 40px; }
@@ -544,7 +641,7 @@ body.home-full #app {
 /* ── navbar links ── */
 .nav-links { display: flex; gap: 28px; margin-left: auto; margin-right: 28px; }
 .nav-link {
-  font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+  font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
   color: #a89070; transition: color 0.3s;
 }
 .home .nav-link:hover { color: #c9a84c; }
@@ -560,7 +657,7 @@ body.home-full #app {
 .adv-card:hover { border-color: rgba(201, 168, 76, 0.45); box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5); }
 .adv-card img { width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; display: block; }
 .adv-body { padding: 20px 22px 24px; }
-.adv-title { font-family: 'Cinzel', serif; font-size: 18px; font-weight: 700; color: #e8e0d0; margin-bottom: 8px; letter-spacing: 1px; }
+.adv-title { font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 18px; font-weight: 700; color: #e8e0d0; margin-bottom: 8px; letter-spacing: 1px; }
 .nw { white-space: nowrap; }
 .adv-tagline { font-size: 15px; line-height: 1.6; color: #8a7e6e; font-style: italic; }
 .more-row { display: flex; justify-content: center; margin-top: 36px; }
@@ -575,7 +672,7 @@ body.home-full #app {
 .class-tile::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to bottom, transparent 55%, rgba(10, 10, 15, 0.9) 100%); }
 .class-tile-name {
   position: absolute; left: 0; right: 0; bottom: 8px; z-index: 1; text-align: center;
-  font-family: 'Cinzel', serif; font-size: 12px; font-weight: 700; letter-spacing: 1px;
+  font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 12px; font-weight: 700; letter-spacing: 1px;
   text-transform: uppercase; color: #e8e0d0;
 }
 
