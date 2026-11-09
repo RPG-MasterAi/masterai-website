@@ -64,18 +64,27 @@ const campaignHref = (href: string, platform: Platform) => {
 // `data-cfasync="false"` like MARK_DEVICE). It sends nothing and stores nothing: it only notes in a
 // variable of the page which store was clicked (not with GPC), and gives the link the same campaign
 // address as onClick below. startAds then takes over: it reads the click and switches the script off.
+//
+// One more thing it must do. A link followed while the page is still loading makes the browser stop
+// loading it: the site's script, already fetched but not yet run, is thrown away. When the store then
+// opens in its own app (or answers with no page), the tab stays on a page that never starts: no tag,
+// no sound button (seen in Chrome, 09/11). So, one second after such a click, if startAds has not
+// taken over, the script adds the site's own main script again. The browser runs a module only once
+// per page, so if the site was in fact already starting nothing happens twice.
 // Written here so that it uses the same constants as the rest of this file.
 const EARLY_KEY = '__masteraiStoreClick'
 type EarlyClick = { p: Platform | ''; off: () => void }
 
-export const EARLY_CLICK = `(function(){var w=window,K=${JSON.stringify(EARLY_KEY)};if(w[K])return;` +
+export const EARLY_CLICK = `(function(){var w=window,d=document,K=${JSON.stringify(EARLY_KEY)};if(w[K])return;` +
   `var R=${JSON.stringify(ANDROID_REFERRER)},I=${JSON.stringify(IOS_CAMPAIGN_URL)},G=navigator.globalPrivacyControl===true,` +
-  `A=new URLSearchParams(location.search).get('utm_source')==='google';` +
+  `A=new URLSearchParams(location.search).get('utm_source')==='google',o,k=0;` +
+  `function r(){if(w[K]!==o)return;var m=d.querySelector('script[type="module"][src]');if(!m)return;` +
+  `var s=d.createElement('script');s.type='module';s.crossOrigin='anonymous';s.src=m.src;d.head.appendChild(s)}` +
   `function h(e){var t=e.target,a=t&&t.closest&&t.closest('a');if(!a)return;var s=a.href,` +
   `p=s.indexOf('https://play.google.com/')===0?'android':s.indexOf('https://apps.apple.com/')===0?'iphone':'';if(!p)return;` +
   `if(A){if(p==='android'){var u=new URL(s);u.searchParams.set('referrer',R);a.href=u.toString()}else if(I)a.href=I}` +
-  `if(!G)w[K].p=p}` +
-  `w[K]={p:'',off:function(){document.removeEventListener('click',h,true)}};document.addEventListener('click',h,true)})()`
+  `if(!G)o.p=p;if(!k){k=1;setTimeout(r,1000)}}` +
+  `o={p:'',off:function(){d.removeEventListener('click',h,true)}};w[K]=o;d.addEventListener('click',h,true)})()`
 
 const visitorCountry = async () => {
   try {
