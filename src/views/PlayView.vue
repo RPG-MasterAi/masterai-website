@@ -110,6 +110,12 @@ usePageMeta(() => ({
   noindex: true
 }))
 useHead({
+  // The poster is the largest thing on screen, the page's LCP (Cloudflare, 09/11). Found only in the
+  // <body>, the browser asked for it at medium priority, behind the stylesheets, the site's script and
+  // the fonts, and on a slow phone it often arrived after the site's script had started. Asked for
+  // here, from the <head> and at high priority, it comes in with the stylesheets. Same file, no change
+  // to what is shown.
+  link: [{ rel: 'preload', as: 'image', href: trailerPoster, fetchpriority: 'high' }],
   script: [
     { innerHTML: MARK_DEVICE, 'data-cfasync': 'false', tagPriority: 'critical' }
     // The early script for the tag and for store clicks (ads.ts, EARLY_SCRIPT) is written into the
