@@ -41,7 +41,7 @@ let heardFromStart = false
 // The video comes after the page (analysis 09/11): with `preload="auto"` every phone fetched the
 // whole 5 MB spot at once, which held back the `load` event and shared the line with the Google
 // tag. Now the poster is shown at once and the video files (the `data-src` of each <source>) are
-// asked for only after `load`, once the tag question is over (src/data/ads.ts) and the browser is
+// asked for only once the page has loaded, once the tag question is over (src/data/ads.ts) and the browser is
 // idle; not at all with Data Saver or on a 2G/3G connection, unless the sound button is tapped.
 // If the video never arrives or fails, the poster simply stays: the page works without it.
 let videoStarted = false
@@ -78,8 +78,14 @@ const scheduleVideo = () => {
   const afterLoad = () => {
     Promise.race([adsSettled, new Promise((r) => setTimeout(r, 4000))]).then(() => whenIdle(startVideo))
   }
-  if (document.readyState === 'complete') afterLoad()
-  else window.addEventListener('load', afterLoad, { once: true })
+  // readyState rather than the `load` event: a store link tapped while the page is loading stops the
+  // loading, and then `load` never comes, while readyState still turns "complete".
+  const waitLoaded = () => {
+    if (leaving) return
+    if (document.readyState === 'complete') afterLoad()
+    else setTimeout(waitLoaded, 250)
+  }
+  waitLoaded()
 }
 
 // The first time the sound is turned on, the spot starts over, so the story is heard from the top.
