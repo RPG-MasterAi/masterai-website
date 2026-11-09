@@ -16,6 +16,18 @@ const SITE_URL = 'https://rpgmaster.ai'
 const bodyClass = (route: string) =>
   route === '/' ? 'home-full' : ['/about', '/support'].includes(route) ? '' : 'site-full'
 
+// Cloudflare Rocket Loader (a zone setting, left on) runs the site's script only after the `load`
+// event: on /play, the Google Ads landing page, store clicks made in those seconds were never
+// counted (analysis 09/11). `data-cfasync="false"`, written before `src` as Cloudflare documents,
+// tells Rocket Loader to leave the script alone. Only on /play: the other pages keep exactly the
+// HTML they had (Marco, 09/11: no Cloudflare changes, fix it in the site, keep the rest as it is).
+const NO_ROCKET_LOADER = ['/play']
+const withoutRocketLoader = (html: string) => {
+  const out = html.replace('<script type="module" crossorigin', '<script data-cfasync="false" type="module" crossorigin')
+  if (out === html) throw new Error('vite.config.ts: main <script type="module"> not found, data-cfasync not added')
+  return out
+}
+
 let pages: string[] = []
 const NOT_IN_SITEMAP = ['/play']
 
@@ -34,7 +46,8 @@ const ssgOptions: ViteSSGOptions = {
   },
   onPageRendered(route, html) {
     const cls = bodyClass(route)
-    return cls ? html.replace('<body>', `<body class="${cls}">`) : html
+    if (cls) html = html.replace('<body>', `<body class="${cls}">`)
+    return NO_ROCKET_LOADER.includes(route) ? withoutRocketLoader(html) : html
   },
   onFinished() {
     // Only needed during the build; it would otherwise be published with the site.
