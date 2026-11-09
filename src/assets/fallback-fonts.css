@@ -1,0 +1,97 @@
+/* Fallback fonts sized like the site's own fonts (09/11), shared by the homepage and /play.
+   Moved here from HomeView.vue unchanged, so that /play can use them too. */
+/* Until Crimson Text arrives the text is drawn in a system font, and a wider one: on a phone the homepage's tagline
+   took one line more, and when the font came in everything below it (#features first) jumped up by that
+   line (Cloudflare, CLS 0.127, 09/11). These are the same system fonts, only scaled so that a line holds
+   as many words as in Crimson Text, with its height: the line breaks no longer change when the font
+   arrives. Once Crimson Text is in, these are never used. Measured in Chrome on the homepage's own
+   paragraphs (average width per character: Crimson Text 0.388 em, Georgia 0.437, Noto Serif 0.472,
+   Times New Roman 0.401; Crimson Text ascent 0.95, descent 0.35). Georgia is the iPhone's and the
+   computer's, Noto Serif Android's. */
+@font-face {
+  font-family: 'Crimson Text Georgia';
+  src: local('Georgia');
+  size-adjust: 88.76%;
+  ascent-override: 107.03%;
+  descent-override: 39.43%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Crimson Text Noto';
+  src: local('Noto Serif'), local('NotoSerif-Regular');
+  size-adjust: 82.26%;
+  ascent-override: 115.49%;
+  descent-override: 42.55%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Crimson Text Times';
+  src: local('Times New Roman'), local('TimesNewRomanPSMT');
+  size-adjust: 96.73%;
+  ascent-override: 98.21%;
+  descent-override: 36.18%;
+  line-gap-override: 0%;
+}
+
+/* The same for the titles, stats and labels in Cinzel and Cinzel Decorative, whose fallback was the
+   plain `serif` (Times New Roman, Noto Serif on Android), narrower and lower: the stats and the section
+   headings changed height when the fonts arrived. Measured the same way on the homepage's own titles and
+   labels, in capitals where the page shows them in capitals (width per character: Cinzel 0.579 em
+   regular, 0.603 bold; Cinzel Decorative bold 0.604; Times New Roman 0.494 / 0.521 / 0.477; Noto Serif
+   0.538 / 0.570 / 0.534; Cinzel ascent 0.98, descent 0.37). A regular and a bold face each, so that the
+   browser does not have to make up a bold. */
+@font-face {
+  font-family: 'Cinzel Times';
+  src: local('Times New Roman'), local('TimesNewRomanPSMT');
+  font-weight: 400;
+  size-adjust: 117.2%;
+  ascent-override: 83.62%;
+  descent-override: 31.57%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Cinzel Times';
+  src: local('Times New Roman Bold'), local('TimesNewRomanPS-BoldMT');
+  font-weight: 700;
+  size-adjust: 115.6%;
+  ascent-override: 84.78%;
+  descent-override: 32.01%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Cinzel Noto';
+  src: local('Noto Serif'), local('NotoSerif-Regular');
+  font-weight: 400;
+  size-adjust: 107.5%;
+  ascent-override: 91.16%;
+  descent-override: 34.42%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Cinzel Noto';
+  src: local('Noto Serif Bold'), local('NotoSerif-Bold');
+  font-weight: 700;
+  size-adjust: 105.9%;
+  ascent-override: 92.54%;
+  descent-override: 34.94%;
+  line-gap-override: 0%;
+}
+/* Cinzel Decorative is used bold only on this page (700 and 900). */
+@font-face {
+  font-family: 'Cinzel Decorative Times';
+  src: local('Times New Roman Bold'), local('TimesNewRomanPS-BoldMT');
+  font-weight: 700;
+  size-adjust: 126.6%;
+  ascent-override: 77.41%;
+  descent-override: 29.23%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Cinzel Decorative Noto';
+  src: local('Noto Serif Bold'), local('NotoSerif-Bold');
+  font-weight: 700;
+  size-adjust: 112.9%;
+  ascent-override: 86.8%;
+  descent-override: 32.77%;
+  line-gap-override: 0%;
+}

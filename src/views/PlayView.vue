@@ -11,6 +11,8 @@ import trailer480 from '@/assets/trailer/trailer-480-audio.mp4'
 import trailerPoster from '@/assets/trailer/trailer-poster.webp'
 import appStoreBadge from '@/assets/badges/app-store-badge.svg'
 import googlePlayBadge from '@/assets/badges/google-play-badge.png'
+// The size-matched fallback fonts of the homepage (09/11), used in the styles below.
+import '@/assets/fallback-fonts.css'
 
 // Landing page for the Google Ads video campaign (Marco, 2026-10-21): the same spot as the ad,
 // the store buttons on top of it, a few lines and reviews below, a way home at the bottom.
@@ -158,9 +160,15 @@ onBeforeUnmount(() => {
       <RouterLink to="/" class="brand" aria-label="MasterAI home">
         <span class="brand-master">MASTER</span><span class="brand-ai">AI</span>
       </RouterLink>
+      <!-- Both labels are always there, on top of each other, the other one hidden, in a box of fixed
+           width: the button does not change width when tapped nor when the font arrives (09/11, see
+           .sound-text). -->
       <button type="button" class="sound-btn" :aria-pressed="soundOn" @click="toggleSound">
         <span aria-hidden="true">{{ soundOn ? '🔊' : '🔇' }}</span>
-        {{ soundOn ? 'Sound on' : 'Tap for sound' }}
+        <span class="sound-text">
+          <span :class="{ 'sound-off': soundOn }">Tap for sound</span>
+          <span :class="{ 'sound-off': !soundOn }">Sound on</span>
+        </span>
       </button>
 
       <div class="hero-content">
@@ -279,7 +287,7 @@ html[data-device] .play .device-signs .sign-word { font-size: 20px; }
 .play {
   background: #0a0a0f;
   color: #e8e0d0;
-  font-family: 'Crimson Text', Georgia, serif;
+  font-family: 'Crimson Text', 'Crimson Text Georgia', 'Crimson Text Noto', 'Crimson Text Times', Georgia, serif;
   overflow-x: hidden;
 }
 .gold { color: #c9a84c; }
@@ -295,31 +303,42 @@ html[data-device] .play .device-signs .sign-word { font-size: 20px; }
 }
 .brand { position: absolute; top: 20px; left: 24px; z-index: 2; }
 .brand-master {
-  font-family: 'Cinzel Decorative', serif; font-size: 20px; font-weight: 900;
+  font-family: 'Cinzel Decorative', 'Cinzel Decorative Times', 'Cinzel Decorative Noto', serif; font-size: 20px; font-weight: 900;
   color: #c9a84c; letter-spacing: 2px;
 }
-.brand-ai { font-family: 'Cinzel', serif; font-size: 16px; color: #8b2500; letter-spacing: 1px; margin-left: 8px; }
+.brand-ai { font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 16px; color: #8b2500; letter-spacing: 1px; margin-left: 8px; }
 .sound-btn {
   position: absolute; top: 16px; right: 20px; z-index: 2;
   display: inline-flex; align-items: center; gap: 8px;
   padding: 10px 16px; border: 1px solid rgba(201, 168, 76, 0.6); border-radius: 999px;
   background: rgba(10, 10, 15, 0.6); backdrop-filter: blur(6px);
-  color: #e8e0d0; font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 1px;
+  color: #e8e0d0; font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 12px; letter-spacing: 1px;
   text-transform: uppercase; cursor: pointer;
 }
 .sound-btn:hover { border-color: #c9a84c; color: #c9a84c; }
+/* The button is anchored on the right, so any change in its width moved it (Cloudflare, CLS 0.106 on
+   button.sound-btn, 09/11): when Cinzel arrived, and again on the tap, "Sound on" being shorter. The two
+   labels share one grid cell of fixed width: the width of "TAP FOR SOUND" in Cinzel (8.061 em measured
+   in Chrome, rounded up to 8.0612 so the box is never narrower than the text) plus the 1px
+   letter-spacing of its 13 letters. It depends on the font size only, not on the font: the same before
+   and after Cinzel arrives, and after the tap. With Cinzel it is exactly the old width, so the button
+   looks as before (screenshots identical to the pixel); "Sound on" is centred in it. A hidden
+   label is also hidden from screen readers. */
+.sound-text { display: inline-grid; justify-items: center; width: calc(8.0612em + 13px); }
+.sound-text > span { grid-area: 1 / 1; white-space: nowrap; }
+.sound-text > .sound-off { visibility: hidden; }
 
 .hero-content {
   position: absolute; left: 0; right: 0; bottom: 6%; z-index: 2;
   text-align: center; padding: 0 16px;
 }
 .hero-title {
-  font-family: 'Cinzel Decorative', serif; font-size: clamp(28px, 5vw, 60px); font-weight: 900;
+  font-family: 'Cinzel Decorative', 'Cinzel Decorative Times', 'Cinzel Decorative Noto', serif; font-size: clamp(28px, 5vw, 60px); font-weight: 900;
   line-height: 1.1; margin: 0 0 10px; color: #fff;
   text-shadow: 0 2px 30px rgba(0, 0, 0, 0.9);
 }
 .hero-subtitle {
-  font-family: 'Cinzel', serif; font-size: clamp(13px, 1.8vw, 20px); letter-spacing: 5px;
+  font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: clamp(13px, 1.8vw, 20px); letter-spacing: 5px;
   text-transform: uppercase; color: rgba(232, 224, 208, 0.9); margin: 0 0 24px;
   text-shadow: 0 2px 16px rgba(0, 0, 0, 0.9);
 }
@@ -353,7 +372,7 @@ html[data-device] .play .device-signs .sign-word { font-size: 20px; }
 .sign:hover { transform: translateY(-3px) rotate(-0.6deg); box-shadow: inset 0 0 0 2px rgba(255, 214, 150, 0.2), inset 0 -8px 14px rgba(0, 0, 0, 0.4), 0 14px 32px rgba(201, 168, 76, 0.35); }
 /* Letters cut into the wood: dark, with the light catching the lower edge. */
 .sign-word {
-  font-family: 'Cinzel Decorative', serif; font-weight: 900; font-size: 17px; letter-spacing: 3px;
+  font-family: 'Cinzel Decorative', 'Cinzel Decorative Times', 'Cinzel Decorative Noto', serif; font-weight: 900; font-size: 17px; letter-spacing: 3px;
   text-transform: uppercase; color: #2b1608;
   text-shadow: 0 1px 0 rgba(255, 214, 150, 0.45), 0 -1px 0 rgba(0, 0, 0, 0.35);
 }
@@ -366,9 +385,9 @@ html[data-device] .play .device-signs .sign-word { font-size: 20px; }
   width: 120px; height: 1px; margin: 0 auto 32px;
   background: linear-gradient(90deg, transparent, #c9a84c, transparent);
 }
-.about-title { font-family: 'Cinzel Decorative', serif; font-size: clamp(24px, 3.5vw, 38px); margin: 0 0 18px; }
+.about-title { font-family: 'Cinzel Decorative', 'Cinzel Decorative Times', 'Cinzel Decorative Noto', serif; font-size: clamp(24px, 3.5vw, 38px); margin: 0 0 18px; }
 .about-text { font-size: 19px; line-height: 1.7; color: #a89070; margin: 0 0 18px; }
-.proof { font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: 1px; color: #8a7e6e; margin: 0; }
+.proof { font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 14px; letter-spacing: 1px; color: #8a7e6e; margin: 0; }
 .proof strong { color: #c9a84c; }
 
 /* ── reviews ── */
@@ -382,7 +401,7 @@ html[data-device] .play .device-signs .sign-word { font-size: 20px; }
 }
 .review-stars { color: #c9a84c; font-size: 16px; letter-spacing: 2px; margin-bottom: 10px; }
 .review-text { font-size: 15px; line-height: 1.7; color: #a89070; font-style: italic; margin: 0 0 12px; }
-.review-author { font-family: 'Cinzel', serif; font-size: 12px; color: #5a5a5a; letter-spacing: 1px; margin: 0; }
+.review-author { font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 12px; color: #5a5a5a; letter-spacing: 1px; margin: 0; }
 
 .again { padding: 24px 20px 56px; }
 
@@ -394,7 +413,7 @@ html[data-device] .play .device-signs .sign-word { font-size: 20px; }
 .foot-links { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; margin-bottom: 20px; }
 .foot-main {
   display: inline-flex; padding: 12px 26px; border: 1px solid rgba(201, 168, 76, 0.5);
-  color: #c9a84c; font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+  color: #c9a84c; font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
 }
 .play .foot-main:hover { background: rgba(201, 168, 76, 0.1); border-color: #c9a84c; }
 .foot-legal { display: flex; gap: 22px; justify-content: center; flex-wrap: wrap; margin-bottom: 14px; }
