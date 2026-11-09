@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
+import { onBeforeUnmount, onMounted, ref } from 'vue'
 import { useHead } from '@unhead/vue'
 import { RouterLink } from 'vue-router'
 import { STORE } from '@/data/links'
-import { EARLY_CLICK } from '@/data/ads'
+import { EARLY_CLICK, adsSettled } from '@/data/ads'
 import { REVIEWS } from '@/data/reviews'
 import { usePageMeta } from '@/data/seo'
 import trailer720 from '@/assets/trailer/trailer-720-audio.mp4'
@@ -38,10 +38,56 @@ const video = ref<HTMLVideoElement | null>(null)
 const soundOn = ref(false)
 let heardFromStart = false
 
+// The video comes after the page (analysis 09/11): with `preload="auto"` every phone fetched the
+// whole 5 MB spot at once, which held back the `load` event and shared the line with the Google
+// tag. Now the poster is shown at once and the video files (the `data-src` of each <source>) are
+// asked for only after `load`, once the tag question is over (src/data/ads.ts) and the browser is
+// idle; not at all with Data Saver or on a 2G/3G connection, unless the sound button is tapped.
+// If the video never arrives or fails, the poster simply stays: the page works without it.
+let videoStarted = false
+let leaving = false
+
+const startVideo = () => {
+  const v = video.value
+  if (!v || videoStarted || leaving) return
+  videoStarted = true
+  v.querySelectorAll('source').forEach((s) => {
+    if (s.dataset.src) s.src = s.dataset.src
+  })
+  v.preload = 'auto'
+  // Same as before from here: muted, looping, inline, started by `autoplay` (and by play()).
+  v.load()
+  v.play().catch(() => {})
+}
+
+type Connection = { saveData?: boolean; effectiveType?: string }
+const slowOrSaving = () => {
+  const c = (navigator as Navigator & { connection?: Connection }).connection
+  return !!c && (c.saveData === true || ['slow-2g', '2g', '3g'].includes(c.effectiveType ?? ''))
+}
+
+const whenIdle = (run: () => void) => {
+  const w = window as Window & { requestIdleCallback?: (cb: () => void, o?: { timeout: number }) => number }
+  if (w.requestIdleCallback) w.requestIdleCallback(run, { timeout: 2000 })
+  else setTimeout(run, 300)
+}
+
+const scheduleVideo = () => {
+  if (slowOrSaving()) return
+  // The tag normally settles well before; the cap keeps a stuck gtag.js from holding the video forever.
+  const afterLoad = () => {
+    Promise.race([adsSettled, new Promise((r) => setTimeout(r, 4000))]).then(() => whenIdle(startVideo))
+  }
+  if (document.readyState === 'complete') afterLoad()
+  else window.addEventListener('load', afterLoad, { once: true })
+}
+
 // The first time the sound is turned on, the spot starts over, so the story is heard from the top.
 const toggleSound = () => {
   const v = video.value
   if (!v) return
+  // Asking for sound is asking for the video: fetch it now if it was not fetched yet.
+  startVideo()
   soundOn.value = !soundOn.value
   v.muted = !soundOn.value
   if (soundOn.value && !heardFromStart) {
@@ -69,6 +115,10 @@ onMounted(() => {
   document.body.classList.add('site-full')
   // Arriving from another page of the site, the <head> script may not have run: mark it here too.
   new Function(MARK_DEVICE)()
+  scheduleVideo()
+})
+onBeforeUnmount(() => {
+  leaving = true
 })
 // `site-full` is removed by App.vue once this page has faded out, not here.
 </script>
@@ -85,10 +135,11 @@ onMounted(() => {
         muted
         loop
         playsinline
-        preload="auto"
+        preload="none"
       >
-        <source :src="trailer480" type="video/mp4" media="(max-width: 720px)" />
-        <source :src="trailer720" type="video/mp4" />
+        <!-- `data-src`, not `src`: startVideo() fills them in after the page has loaded. -->
+        <source :data-src="trailer480" type="video/mp4" media="(max-width: 720px)" />
+        <source :data-src="trailer720" type="video/mp4" />
       </video>
       <div class="hero-shade" />
 
