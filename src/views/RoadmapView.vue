@@ -47,11 +47,11 @@ import { ROADMAP } from '@/data/roadmap'
 .gold { color: #c9a84c; }
 .page-head { max-width: 820px; margin: 0 auto; padding: 90px 20px 50px; text-align: center; }
 .eyebrow {
-  font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 4px; color: #c9a84c;
+  font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 12px; letter-spacing: 4px; color: #c9a84c;
   text-transform: uppercase; margin: 0 0 12px;
 }
 .page-title {
-  font-family: 'Cinzel Decorative', serif; font-size: clamp(30px, 5vw, 56px); font-weight: 900;
+  font-family: 'Cinzel Decorative', var(--title-fallback, serif), serif; font-size: clamp(30px, 5vw, 56px); font-weight: 900;
   line-height: 1.15; margin: 0 0 24px; color: #e8e0d0;
 }
 .page-intro { color: #a89070; font-size: 19px; line-height: 1.7; margin: 0; }
@@ -61,11 +61,11 @@ import { ROADMAP } from '@/data/roadmap'
 .stage-mark {
   flex-shrink: 0; width: 52px; height: 52px; display: grid; place-items: center;
   border: 1px solid #c9a84c; transform: rotate(45deg);
-  font-family: 'Cinzel Decorative', serif; font-weight: 900; font-size: 20px; color: #c9a84c;
+  font-family: 'Cinzel Decorative', 'Cinzel Decorative Times', 'Cinzel Decorative Noto', serif; font-weight: 900; font-size: 20px; color: #c9a84c;
 }
 .stage-mark > span { transform: rotate(-45deg); line-height: 1; }
 .stage-title {
-  font-family: 'Cinzel', serif; font-size: clamp(20px, 2.6vw, 28px); font-weight: 700;
+  font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: clamp(20px, 2.6vw, 28px); font-weight: 700;
   color: #e8e0d0; margin: 0 0 4px; letter-spacing: 1px;
 }
 .stage-intro { color: #8a7e6e; margin: 0; font-size: 17px; font-style: italic; }
@@ -81,7 +81,7 @@ import { ROADMAP } from '@/data/roadmap'
 }
 .stage-2 .item { border-top-color: rgba(201, 168, 76, 0.35); }
 .stage-3 .item { border-top-color: rgba(139, 37, 0, 0.7); }
-.item-title { font-family: 'Cinzel', serif; font-size: 16px; font-weight: 700; color: #e8e0d0; margin: 0 0 8px; letter-spacing: 1px; }
+.item-title { font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 16px; font-weight: 700; color: #e8e0d0; margin: 0 0 8px; letter-spacing: 1px; }
 .item-text { color: #a89070; font-size: 16px; line-height: 1.6; margin: 0; }
 
 .ask { text-align: center; color: #8a7e6e; padding: 64px 20px 20px; margin: 0; }

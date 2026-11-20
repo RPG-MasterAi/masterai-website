@@ -67,17 +67,17 @@ footer.site-footer {
   border-top: 1px solid rgba(201, 168, 76, 0.1);
   max-width: 1200px;
   margin: 0 auto;
-  font-family: 'Crimson Text', Georgia, serif;
+  font-family: 'Crimson Text', 'Crimson Text Georgia', 'Crimson Text Noto', 'Crimson Text Times', Georgia, serif;
 }
 footer.site-footer .footer-grid {
   display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 40px; margin-bottom: 40px;
 }
-footer.site-footer .footer-brand { font-family: 'Cinzel Decorative', serif; font-size: 20px; font-weight: 900; color: #c9a84c; margin: 0 0 16px; }
+footer.site-footer .footer-brand { font-family: 'Cinzel Decorative', 'Cinzel Decorative Times', 'Cinzel Decorative Noto', serif; font-size: 20px; font-weight: 900; color: #c9a84c; margin: 0 0 16px; }
 .red { color: #8b2500; }
 .footer-tag { font-size: 13px; line-height: 1.7; color: #6b6b6b; margin: 0; }
 footer.site-footer .footer-head {
-  font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 3px; color: #6b6b6b;
+  font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 12px; letter-spacing: 3px; color: #6b6b6b;
   text-transform: uppercase; margin: 0 0 16px; font-weight: 400;
 }
 .footer-col { display: flex; flex-direction: column; gap: 10px; }

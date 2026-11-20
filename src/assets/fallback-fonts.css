@@ -1,5 +1,9 @@
 /* Fallback fonts sized like the site's own fonts (09/11), shared by the homepage and /play.
    Moved here from HomeView.vue unchanged, so that /play can use them too. */
+/* Since 20/11 the content and legal pages use them too (SiteShell.vue). Every face is limited to the characters
+   the web fonts themselves carry (the `latin` range of @fontsource): anything else, the arrows of
+   "← All adventures" for one, goes on to the plain system font as it always did, instead of being drawn
+   in one of these scaled faces forever. */
 /* Until Crimson Text arrives the text is drawn in a system font, and a wider one: on a phone the homepage's tagline
    took one line more, and when the font came in everything below it (#features first) jumped up by that
    line (Cloudflare, CLS 0.127, 09/11). These are the same system fonts, only scaled so that a line holds
@@ -15,6 +19,7 @@
   ascent-override: 107.03%;
   descent-override: 39.43%;
   line-gap-override: 0%;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
   font-family: 'Crimson Text Noto';
@@ -23,6 +28,7 @@
   ascent-override: 115.49%;
   descent-override: 42.55%;
   line-gap-override: 0%;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
   font-family: 'Crimson Text Times';
@@ -31,6 +37,7 @@
   ascent-override: 98.21%;
   descent-override: 36.18%;
   line-gap-override: 0%;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 
 /* The same for the titles, stats and labels in Cinzel and Cinzel Decorative, whose fallback was the
@@ -48,6 +55,7 @@
   ascent-override: 83.62%;
   descent-override: 31.57%;
   line-gap-override: 0%;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
   font-family: 'Cinzel Times';
@@ -57,6 +65,7 @@
   ascent-override: 84.78%;
   descent-override: 32.01%;
   line-gap-override: 0%;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
   font-family: 'Cinzel Noto';
@@ -66,6 +75,7 @@
   ascent-override: 91.16%;
   descent-override: 34.42%;
   line-gap-override: 0%;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
   font-family: 'Cinzel Noto';
@@ -75,6 +85,7 @@
   ascent-override: 92.54%;
   descent-override: 34.94%;
   line-gap-override: 0%;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 /* Cinzel Decorative is used bold only on this page (700 and 900). */
 @font-face {
@@ -85,6 +96,7 @@
   ascent-override: 77.41%;
   descent-override: 29.23%;
   line-gap-override: 0%;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
 }
 @font-face {
   font-family: 'Cinzel Decorative Noto';
@@ -94,4 +106,42 @@
   ascent-override: 86.8%;
   descent-override: 32.77%;
   line-gap-override: 0%;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* The page titles of the content and legal pages ("Choose Your World", "The Oak Valley Terror") are Cinzel
+   Decorative 900 in upper and lower case, and there the font is much wider than in capitals alone: its
+   lower case is small capitals. With the faces above a title that takes two lines on a phone was drawn on
+   one, and the whole page moved down a line when the font arrived (20/11). Measured in Chrome on the
+   sixteen titles of these pages: Cinzel Decorative 900 is 1.395 times as wide as Times New Roman Bold (from
+   1.29 to 1.51 title by title, so now and then a title will still break differently). Noto Serif Bold was
+   not measured, it is not on this computer: its size comes from the Times one through the ratio between
+   the two faces above.
+   Only up to 1100px, though: on a wider screen every one of these titles fits on one line, and the only
+   way to get it wrong is to draw it too wide ("WWII: The Reich's Dragons", mostly capitals, went to two
+   lines). There the narrower faces above stay. The titles take whichever applies from --title-fallback. */
+@font-face {
+  font-family: 'Cinzel Decorative Title Times';
+  src: local('Times New Roman Bold'), local('TimesNewRomanPS-BoldMT');
+  font-weight: 900;
+  size-adjust: 139.5%;
+  ascent-override: 70.25%;
+  descent-override: 26.52%;
+  line-gap-override: 0%;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Cinzel Decorative Title Noto';
+  src: local('Noto Serif Bold'), local('NotoSerif-Bold');
+  font-weight: 900;
+  size-adjust: 124.4%;
+  ascent-override: 78.78%;
+  descent-override: 29.74%;
+  line-gap-override: 0%;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+:root { --title-fallback: 'Cinzel Decorative Times', 'Cinzel Decorative Noto'; }
+@media (max-width: 1100px) {
+  :root { --title-fallback: 'Cinzel Decorative Title Times', 'Cinzel Decorative Title Noto'; }
 }

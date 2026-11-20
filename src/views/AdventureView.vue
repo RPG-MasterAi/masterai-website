@@ -96,16 +96,16 @@ const segments = (text: string) => text.split('`')
 .hero-text { position: absolute; left: 0; right: 0; bottom: 0; padding: 0 20px 44px; max-width: 900px; margin: 0 auto; }
 .back {
   display: inline-block; margin-bottom: 18px;
-  font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #c9a84c;
+  font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #c9a84c;
 }
 .title {
-  font-family: 'Cinzel Decorative', serif; font-size: clamp(28px, 5vw, 56px); font-weight: 900;
+  font-family: 'Cinzel Decorative', var(--title-fallback, serif), serif; font-size: clamp(28px, 5vw, 56px); font-weight: 900;
   line-height: 1.15; margin: 0 0 14px; color: #fff; text-shadow: 0 2px 30px rgba(0, 0, 0, 0.9);
 }
 .nw { white-space: nowrap; }
 .tagline { font-size: clamp(17px, 2vw, 21px); font-style: italic; color: #e8e0d0; margin: 0; text-shadow: 0 2px 16px rgba(0, 0, 0, 0.9); }
 .play-line {
-  margin: 18px 0 0; font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  margin: 18px 0 0; font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
   color: #b8ad98; text-shadow: 0 2px 12px rgba(0, 0, 0, 0.9);
 }
 .play-link { white-space: nowrap; color: #c9a84c; border-bottom: 1px solid rgba(201, 168, 76, 0.4); padding-bottom: 1px; }
@@ -115,7 +115,7 @@ const segments = (text: string) => text.split('`')
 .body { max-width: 780px; margin: 0 auto; padding: 40px 20px 20px; }
 .block { margin-bottom: 40px; }
 .block-title {
-  font-family: 'Cinzel', serif; font-size: 14px; letter-spacing: 4px; text-transform: uppercase;
+  font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 14px; letter-spacing: 4px; text-transform: uppercase;
   color: #c9a84c; margin: 0 0 14px; font-weight: 700;
 }
 .para { color: #cfc4b0; font-size: 19px; line-height: 1.75; margin: 0 0 16px; }
@@ -136,7 +136,7 @@ const segments = (text: string) => text.split('`')
 .gallery figure { margin: 0; }
 .gallery img { width: 100%; height: auto; display: block; border: 1px solid rgba(201, 168, 76, 0.2); }
 .gallery figcaption {
-  font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
   color: #8a7e6e; text-align: center; margin-top: 10px;
 }
 
@@ -149,7 +149,7 @@ const segments = (text: string) => text.split('`')
   display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
   border-top: 1px solid rgba(201, 168, 76, 0.15); padding-top: 24px;
 }
-.next-link { font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: #c9a84c; }
+.next-link { font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: #c9a84c; }
 .next-link:hover { color: #e6c86e; }
 
 .missing { max-width: 700px; margin: 0 auto; padding: 120px 20px; text-align: center; }

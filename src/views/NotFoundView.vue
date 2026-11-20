@@ -26,19 +26,19 @@ import { SITE_NAV } from '@/data/links'
 <style scoped>
 .page-head { max-width: 760px; margin: 0 auto; padding: 96px 20px 40px; text-align: center; }
 .eyebrow {
-  font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 4px; color: #c9a84c;
+  font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 12px; letter-spacing: 4px; color: #c9a84c;
   text-transform: uppercase; margin: 0 0 12px;
 }
 .gold { color: #c9a84c; }
 .page-title {
-  font-family: 'Cinzel Decorative', serif; font-size: clamp(30px, 5vw, 52px); font-weight: 900;
+  font-family: 'Cinzel Decorative', var(--title-fallback, serif), serif; font-size: clamp(30px, 5vw, 52px); font-weight: 900;
   line-height: 1.15; margin: 0 0 20px; color: #e8e0d0;
 }
 .page-intro { color: #a89070; font-size: 19px; line-height: 1.7; margin: 0 0 40px; }
 .links { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
 .link-main, .link {
   display: inline-flex; align-items: center; padding: 12px 26px;
-  font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+  font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
 }
 .link-main { background: linear-gradient(135deg, #c9a84c 0%, #a8872a 100%); color: #0a0a0f; font-weight: 700; }
 .link { color: #c9a84c; border: 1px solid rgba(201, 168, 76, 0.5); }

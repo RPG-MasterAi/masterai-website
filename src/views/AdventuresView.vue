@@ -44,11 +44,11 @@ import { ADVENTURES } from '@/data/adventures'
 .gold { color: #c9a84c; }
 .page-head { max-width: 820px; margin: 0 auto; padding: 90px 20px 50px; text-align: center; }
 .eyebrow {
-  font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 4px; color: #c9a84c;
+  font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 12px; letter-spacing: 4px; color: #c9a84c;
   text-transform: uppercase; margin: 0 0 12px;
 }
 .page-title {
-  font-family: 'Cinzel Decorative', serif; font-size: clamp(30px, 5vw, 56px); font-weight: 900;
+  font-family: 'Cinzel Decorative', var(--title-fallback, serif), serif; font-size: clamp(30px, 5vw, 56px); font-weight: 900;
   line-height: 1.15; margin: 0 0 24px; color: #e8e0d0;
 }
 .page-intro { color: #a89070; font-size: 19px; line-height: 1.7; margin: 0; }
@@ -69,12 +69,12 @@ import { ADVENTURES } from '@/data/adventures'
 .card:hover .card-img img { transform: scale(1.04); }
 .card-body { padding: 24px 26px 28px; display: flex; flex-direction: column; flex: 1; }
 .card-title {
-  font-family: 'Cinzel', serif; font-size: 20px; font-weight: 700; color: #e8e0d0;
+  font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 20px; font-weight: 700; color: #e8e0d0;
   margin: 0 0 10px; letter-spacing: 1px; line-height: 1.3;
 }
 .nw { white-space: nowrap; }
 .card-tagline { color: #8a7e6e; font-size: 16px; line-height: 1.6; font-style: italic; margin: 0 0 18px; flex: 1; }
-.card-more { font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 2px; color: #c9a84c; text-transform: uppercase; }
+.card-more { font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 12px; letter-spacing: 2px; color: #c9a84c; text-transform: uppercase; }
 
 @media (max-width: 720px) {
   .page-head { padding: 56px 20px 36px; }

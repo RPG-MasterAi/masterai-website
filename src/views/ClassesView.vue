@@ -127,11 +127,11 @@ onBeforeUnmount(() => {
 .page-head { max-width: 820px; margin: 0 auto; padding: 90px 20px 50px; text-align: center; }
 .races-head { padding-top: 70px; }
 .eyebrow {
-  font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 4px; color: #c9a84c;
+  font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 12px; letter-spacing: 4px; color: #c9a84c;
   text-transform: uppercase; margin: 0 0 12px;
 }
 .page-title {
-  font-family: 'Cinzel Decorative', serif; font-size: clamp(30px, 5vw, 56px); font-weight: 900;
+  font-family: 'Cinzel Decorative', var(--title-fallback, serif), serif; font-size: clamp(30px, 5vw, 56px); font-weight: 900;
   line-height: 1.15; margin: 0 0 24px; color: #e8e0d0;
 }
 .page-title.small { font-size: clamp(26px, 4vw, 44px); }
@@ -160,13 +160,13 @@ onBeforeUnmount(() => {
 .class-card.soon img { filter: grayscale(0.6) brightness(0.7); }
 .class-name {
   position: absolute; left: 0; right: 0; bottom: 14px; z-index: 1; text-align: center;
-  font-family: 'Cinzel', serif; font-size: 17px; font-weight: 700; letter-spacing: 2px;
+  font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 17px; font-weight: 700; letter-spacing: 2px;
   text-transform: uppercase; color: #e8e0d0;
 }
 .badge {
   position: absolute; top: 10px; right: 10px; z-index: 1;
   background: #8b2500; color: #f3e6c8; padding: 4px 10px;
-  font-family: 'Cinzel', serif; font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
+  font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 10px; letter-spacing: 2px; text-transform: uppercase;
 }
 .badge.static { position: static; display: inline-block; margin: 0 0 10px; }
 
@@ -176,7 +176,7 @@ onBeforeUnmount(() => {
   background: rgba(201, 168, 76, 0.04);
 }
 .more-title {
-  font-family: 'Cinzel', serif; font-size: 15px; letter-spacing: 4px; text-transform: uppercase;
+  font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 15px; letter-spacing: 4px; text-transform: uppercase;
   color: #c9a84c; margin: 0 0 10px;
 }
 .more-subs p { color: #a89070; margin: 0; font-size: 17px; }
@@ -193,7 +193,7 @@ onBeforeUnmount(() => {
   border: 1px solid rgba(201, 168, 76, 0.15); padding: 14px;
 }
 .race-card img { width: 104px; height: 104px; object-fit: cover; flex-shrink: 0; border: 1px solid rgba(201, 168, 76, 0.25); }
-.race-name { font-family: 'Cinzel', serif; font-size: 17px; letter-spacing: 2px; text-transform: uppercase; color: #e8e0d0; margin: 0 0 6px; }
+.race-name { font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 17px; letter-spacing: 2px; text-transform: uppercase; color: #e8e0d0; margin: 0 0 6px; }
 .race-desc { color: #8a7e6e; font-size: 15px; line-height: 1.55; margin: 0; }
 
 /* ── class sheet ── */
@@ -211,13 +211,13 @@ onBeforeUnmount(() => {
 .sheet-img { width: 100%; height: 100%; object-fit: cover; display: block; min-height: 340px; }
 .sheet-body { padding: 36px 36px 30px; }
 .sheet-title {
-  font-family: 'Cinzel Decorative', serif; font-size: 34px; font-weight: 900; color: #c9a84c;
+  font-family: 'Cinzel Decorative', var(--title-fallback, serif), serif; font-size: 34px; font-weight: 900; color: #c9a84c;
   margin: 0 0 16px; line-height: 1.1;
 }
 .sheet-desc { color: #cfc4b0; font-size: 18px; line-height: 1.7; margin: 0 0 24px; }
 .facts { margin: 0; border-top: 1px solid rgba(201, 168, 76, 0.2); padding-top: 18px; }
 .facts dt {
-  font-family: 'Cinzel', serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
   color: #8a7e6e; margin: 0 0 4px;
 }
 .facts dd { margin: 0 0 18px; color: #e8e0d0; font-size: 17px; line-height: 1.6; }

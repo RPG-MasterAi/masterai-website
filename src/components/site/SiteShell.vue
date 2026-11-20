@@ -4,6 +4,8 @@ import { RouterLink } from 'vue-router'
 import { DISCORD, SITE_NAV, STORE } from '@/data/links'
 import { usePageMeta } from '@/data/seo'
 import SiteFooter from './SiteFooter.vue'
+// Size-matched system fonts, so that titles and text do not rewrap when the web fonts arrive.
+import '@/assets/fallback-fonts.css'
 
 // Frame of the content pages (adventures, classes, roadmap): same look as the
 // homepage, a solid top bar, the download band and the footer.
@@ -80,7 +82,7 @@ body.site-full #app {
 .site {
   background: #0a0a0f;
   color: #e8e0d0;
-  font-family: 'Crimson Text', Georgia, serif;
+  font-family: 'Crimson Text', 'Crimson Text Georgia', 'Crimson Text Noto', 'Crimson Text Times', Georgia, serif;
   font-size: 18px;
   line-height: 1.6;
   min-height: 100vh;
@@ -100,20 +102,20 @@ body.site-full #app {
 }
 .brand { display: flex; align-items: baseline; gap: 10px; white-space: nowrap; }
 .brand-master {
-  font-family: 'Cinzel Decorative', serif; font-size: 20px; font-weight: 900;
+  font-family: 'Cinzel Decorative', 'Cinzel Decorative Times', 'Cinzel Decorative Noto', serif; font-size: 20px; font-weight: 900;
   color: #c9a84c; letter-spacing: 2px;
 }
-.brand-ai { font-family: 'Cinzel', serif; font-size: 16px; color: #8b2500; letter-spacing: 1px; }
+.brand-ai { font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 16px; color: #8b2500; letter-spacing: 1px; }
 .nav-links { display: flex; gap: 28px; flex: 1; }
 .nav-link {
-  font-family: 'Cinzel', serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
+  font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 13px; letter-spacing: 2px; text-transform: uppercase;
   color: #a89070; transition: color 0.3s;
 }
 .nav-link:hover, .nav-link.router-link-active { color: #c9a84c; }
 .nav-cta {
   padding: 10px 24px;
   background: linear-gradient(135deg, #c9a84c 0%, #a8872a 100%);
-  color: #0a0a0f; font-family: 'Cinzel', serif; font-weight: 700;
+  color: #0a0a0f; font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-weight: 700;
   font-size: 11px; letter-spacing: 3px; text-transform: uppercase; white-space: nowrap;
 }
 
@@ -129,7 +131,7 @@ body.site-full #app {
   background: linear-gradient(90deg, transparent, #c9a84c, transparent);
 }
 .get-app-title {
-  font-family: 'Cinzel Decorative', serif; font-size: clamp(26px, 4vw, 44px); font-weight: 900;
+  font-family: 'Cinzel Decorative', var(--title-fallback, serif), serif; font-size: clamp(26px, 4vw, 44px); font-weight: 900;
   line-height: 1.2; margin: 0 0 16px; color: #e8e0d0;
 }
 .get-app-text { color: #8a7e6e; margin: 0 0 36px; }
@@ -137,14 +139,14 @@ body.site-full #app {
 .store-btn {
   display: inline-flex; align-items: center; padding: 16px 36px;
   background: linear-gradient(135deg, #c9a84c 0%, #a8872a 100%);
-  color: #0a0a0f; font-family: 'Cinzel', serif; font-weight: 700;
+  color: #0a0a0f; font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-weight: 700;
   font-size: 14px; letter-spacing: 3px; text-transform: uppercase; transition: all 0.4s;
 }
 .store-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 32px rgba(201, 168, 76, 0.4); }
 .store-btn-outline {
   display: inline-flex; align-items: center; padding: 14px 30px;
   color: #c9a84c; border: 1px solid rgba(201, 168, 76, 0.5);
-  font-family: 'Cinzel', serif; font-weight: 600; font-size: 13px;
+  font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-weight: 600; font-size: 13px;
   letter-spacing: 2px; text-transform: uppercase; transition: all 0.3s;
 }
 .site .store-btn-outline:hover { background: rgba(201, 168, 76, 0.1); border-color: #c9a84c; }

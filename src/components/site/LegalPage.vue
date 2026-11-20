@@ -23,15 +23,15 @@ defineProps<{ title: string; description: string; source: string }>()
   overflow-wrap: anywhere;
 }
 .legal :deep(h1) {
-  font-family: 'Cinzel Decorative', serif; font-size: clamp(28px, 4.5vw, 44px); font-weight: 900;
+  font-family: 'Cinzel Decorative', var(--title-fallback, serif), serif; font-size: clamp(28px, 4.5vw, 44px); font-weight: 900;
   line-height: 1.2; color: #e8e0d0; margin: 0 0 28px;
 }
 .legal :deep(h2) {
-  font-family: 'Cinzel', serif; font-size: 20px; font-weight: 700; letter-spacing: 1px;
+  font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 20px; font-weight: 700; letter-spacing: 1px;
   color: #c9a84c; margin: 44px 0 14px; padding-top: 20px; border-top: 1px solid rgba(201, 168, 76, 0.15);
 }
 .legal :deep(h3), .legal :deep(h4) {
-  font-family: 'Cinzel', serif; font-size: 16px; font-weight: 700; letter-spacing: 1px;
+  font-family: 'Cinzel', 'Cinzel Times', 'Cinzel Noto', serif; font-size: 16px; font-weight: 700; letter-spacing: 1px;
   color: #e8e0d0; margin: 28px 0 10px;
 }
 .legal :deep(p) { margin: 0 0 16px; }
