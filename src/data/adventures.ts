@@ -29,6 +29,9 @@ export interface AdventureSection {
 
 export interface AdventureImage {
   src: string
+  // Pixel size of the file: the browser keeps the space before the lazy image arrives.
+  width: number
+  height: number
   alt: string
   caption?: string
   tall?: boolean
@@ -92,8 +95,8 @@ export const ADVENTURES: Adventure[] = [
       }
     ],
     gallery: [
-      { src: godKingFloorsTop, alt: 'Cutaway of the dungeon: the city of Cariddi Hold and the first six floors', caption: 'Cariddi Hold and floors 1 to 6, from the Ring of Death to the Arena', tall: true },
-      { src: godKingFloorsDeep, alt: 'Cutaway of the dungeon: floors seven to twelve, down to the hellfire', caption: "Floors 7 to 12, from the Shifting Chambers down to the God-King's tomb", tall: true }
+      { src: godKingFloorsTop, width: 1000, height: 1792, alt: 'Cutaway of the dungeon: the city of Cariddi Hold and the first six floors', caption: 'Cariddi Hold and floors 1 to 6, from the Ring of Death to the Arena', tall: true },
+      { src: godKingFloorsDeep, width: 1000, height: 1792, alt: 'Cutaway of the dungeon: floors seven to twelve, down to the hellfire', caption: "Floors 7 to 12, from the Shifting Chambers down to the God-King's tomb", tall: true }
     ],
     bestFor: 'Players who like classic dungeon crawls, riddles and traps, and the tension of never knowing what comes next. You start at level 1: win the selection, or come back when you are stronger.'
   },
@@ -202,7 +205,7 @@ export const ADVENTURES: Adventure[] = [
       }
     ],
     gallery: [
-      { src: moonBeetle, alt: 'Villagers in a medieval square look up at a colossal astral beetle towing a planet across the night sky', caption: 'The second evening' }
+      { src: moonBeetle, width: 1600, height: 893, alt: 'Villagers in a medieval square look up at a colossal astral beetle towing a planet across the night sky', caption: 'The second evening' }
     ],
     bestFor: 'Players who want classic fantasy to collide with cyberpunk: lasers, flying ships and divine dreams.'
   },

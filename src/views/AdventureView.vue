@@ -61,7 +61,7 @@ const segments = (text: string) => text.split('`')
 
         <div v-if="adventure.gallery" class="gallery" :class="{ pair: adventure.gallery.length > 1 }">
           <figure v-for="g in adventure.gallery" :key="g.src" :class="{ tall: g.tall }">
-            <img :src="g.src" :alt="g.alt" loading="lazy" />
+            <img :src="g.src" :alt="g.alt" :width="g.width" :height="g.height" loading="lazy" />
             <figcaption v-if="g.caption">{{ g.caption }}</figcaption>
           </figure>
         </div>
@@ -134,7 +134,7 @@ const segments = (text: string) => text.split('`')
 .gallery { margin: 8px 0 44px; display: grid; gap: 20px; }
 .gallery.pair { grid-template-columns: 1fr 1fr; }
 .gallery figure { margin: 0; }
-.gallery img { width: 100%; display: block; border: 1px solid rgba(201, 168, 76, 0.2); }
+.gallery img { width: 100%; height: auto; display: block; border: 1px solid rgba(201, 168, 76, 0.2); }
 .gallery figcaption {
   font-family: 'Cinzel', serif; font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
   color: #8a7e6e; text-align: center; margin-top: 10px;

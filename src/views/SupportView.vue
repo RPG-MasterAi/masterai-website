@@ -136,7 +136,7 @@ function toggleFaq(i: number) { faqs.value[i].open = !faqs.value[i].open }
             <strong>Email</strong>
             <span class="sp-card-detail">help@rpgmaster.ai</span>
           </a>
-          <a href="https://discord.gg/bPrEUFtjnp" target="_blank" class="sp-card">
+          <a href="https://discord.gg/bPrEUFtjnp" target="_blank" rel="noopener" class="sp-card">
             <span class="sp-card-icon">💬</span>
             <strong>Discord</strong>
             <span class="sp-card-detail">Community support</span>
@@ -183,7 +183,7 @@ function toggleFaq(i: number) { faqs.value[i].open = !faqs.value[i].open }
 .sp-field { margin-bottom: 18px; }
 .sp-field label { display: block; font-size: 13px; color: #8a8078; margin-bottom: 6px; font-weight: 500; }
 .sp-field input, .sp-field textarea, .sp-field select {
-  width: 100%; padding: 12px 14px; background: #16161c;
+  width: 100%; box-sizing: border-box; padding: 12px 14px; background: #16161c;
   border: 1px solid #2a2a32; border-radius: 8px;
   color: #d4d0c8; font-size: 15px; font-family: inherit;
   transition: border-color 0.3s;
